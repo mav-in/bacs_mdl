@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+package bacs.external;
+option go_package = "external";
+
+message Contest {
+  message Id {
+    optional string value = 1;
+  }
+  message IdList {
+    repeated Id entry = 1;
+  }
+  message Info {
+    optional string name = 1;
+    optional string description = 2;
+  }
+  optional Id id = 1;
+  map<string /* language */, Info> info = 2;
+  repeated Problem problem = 3;
+}
+
+message ContestList {
+  repeated Contest entry = 1;
+}
+
+message Problem {
+  message Id {
+    optional string value = 1;
+    optional Contest.Id contest = 2;  // default contest if not set
+  }
+  message Info {
+    optional string name = 1;
+  }
+  message ResourceLimits {
+    optional uint64 time_limit_millis = 1;
+    optional uint64 memory_limit_bytes = 2;
+  }
+  message Statement {
+    message Version {
+      optional string language = 1;
+      optional string format = 2;
+    }
+    message Request {
+      optional Id problem = 1;
+      optional Statement.Version version = 2;
+    }
+    message Url {
+      optional string value = 1;
+    }
+    repeated Version version = 1;
+  }
+  optional Id id = 1;
+  map<string /* language */, Info> info = 2;
+  optional ResourceLimits resource_limits = 3;
+  optional Statement statement = 4;
+}
