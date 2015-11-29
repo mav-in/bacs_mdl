@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/bacs/db" VERSION="20140306" COMMENT="XMLDB file for Moodle mod/bacs"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="bacs" COMMENT="This is main table. It stores general settings of contests.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="starttime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="endtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="upsolving" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="bacs_tasks" COMMENT="This table stores information about all tasks for contests.">
+      <FIELDS>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="tl" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="ml" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="count_tests" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="task_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_tasks_to_contests" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="task_id, contest_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits" COMMENT="This table stores results of task's checking.">
+      <FIELDS>
+        <FIELD NAME="submit_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lang_id" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="solution" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="submit_time" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="test_num_failed" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="max_time_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="max_memory_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="info" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="submit_id"/>
+        <KEY NAME="lang_id" TYPE="foreign" FIELDS="lang_id" REFTABLE="bacs_langs" REFFIELDS="langs_id"/>
+        <KEY NAME="result_id" TYPE="foreign" FIELDS="result_id" REFTABLE="bacs_results" REFFIELDS="results_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_langs" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="langs_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="str" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="langs_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_results" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="result_str" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="result_id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
