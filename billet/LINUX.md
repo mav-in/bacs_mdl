@@ -21,6 +21,8 @@ $ mkfs.ext4 /dev/sda
 $ mkswap /dev/sda1
 $ swapon /dev/sda1
 $ mount /dev/sda2 /mnt
+$ pacman-key --init
+$ pacman-key --populate archlinux
 $ pacstrap /mnt base
 $ genfstab -p /mnt >> /mnt/etc/fstab
 ```
@@ -69,6 +71,7 @@ $ pacman -Syu
 $ pacman -S grub
 $ grub-install --recheck /dev/sda
 $ grub-mkconfig -o /boot/grub/grub.cfg
+$ exit
 $ umount /mnt
 $ reboot
 ```
@@ -79,7 +82,7 @@ $ systemctl start dhcpcd
 $ systemctl enable dhcpcd
 ```
 
-**Лешино зеркало**
+**пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ**
 ```sh
 $ nano /etc/pacman.conf
 ```
