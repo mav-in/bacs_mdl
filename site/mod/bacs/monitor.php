@@ -6,6 +6,8 @@
  * @subpackage bacs
  */
 
+//Проверить все isset!!!
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 
@@ -56,14 +58,14 @@ foreach($results as $result) {
 };
 echo html_writer::table($table);
 
-echo 'TEST';
+//echo 'TEST';
 
 //ИЩЕМ КОНТЕСТ
 $now = time();
-if (!((int)$_GET['c_id']))
+//if (!((int)$_GET['c_id']))
 	$id = (int)$bacs->id;
-else
-	$id = (int)$_GET['c_id'];
+//else
+//	$id = (int)$_GET['c_id'];
 	
 $result = $DB->get_record_select('bacs', "starttime < $now AND id = $id", array($params=null),'id, name');
 //!!!Костыль: проверить на корректость проверки объекта
@@ -191,7 +193,7 @@ foreach($results as $result) {
 //Подсчитываем результат для каждого
 $usern = 0;
 $cstat = array(array());
-if ($data) {
+if (isset($data)) {
 	foreach ($data as $cur_uid => $rec0) {
 		$u = new Boo();
 		$u->id = $cur_uid;
@@ -213,7 +215,7 @@ if ($data) {
 	}
 }
 
-if ($user) {
+if (isset($user)) {
 	$list = array();
 	foreach ($user as $i => $u) {
 		if ((int)$u->id == 0)

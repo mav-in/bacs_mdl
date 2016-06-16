@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html><div id="bukvus"></div><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/fql" async=""></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/count" async=""></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/gpp.xml" async=""></script>
+<link rel="alternate" type="application/rss+xml" title="Dedushka.org » Лента комментариев к «Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков»" href="http://dedushka.org/uroki/8353.html/feed">
+		<script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/widgets.js" id="twitter-wjs"></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/watch.js" async="" type="text/javascript"></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/analytics.js" async=""></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/sdk.js" id="facebook-jssdk"></script><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/analytics.js" async=""></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/dedushka.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.2"}};
+			!function(a,b,c){function d(a){var c,d=b.createElement("canvas"),e=d.getContext&&d.getContext("2d"),f=String.fromCharCode;return e&&e.fillText?(e.textBaseline="top",e.font="600 32px Arial","flag"===a?(e.fillText(f(55356,56806,55356,56826),0,0),d.toDataURL().length>3e3):"diversity"===a?(e.fillText(f(55356,57221),0,0),c=e.getImageData(16,16,1,1).data.toString(),e.fillText(f(55356,57221,55356,57343),0,0),c!==e.getImageData(16,16,1,1).data.toString()):("simple"===a?e.fillText(f(55357,56835),0,0):e.fillText(f(55356,57135),0,0),0!==e.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/wp-emoji-release.js"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="toc-screen-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/screen.css" type="text/css" media="all">
+<link rel="stylesheet" id="upprev-css-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/upprev.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-frontend-css-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/wpdiscuz.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-validator-css-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/validator.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-tooltipster-css-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/tooltipster.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="mediaelementjs-styles-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/mediaelementplayer.css" type="text/css" media="all">
+<link rel="stylesheet" id="mediaelementjs-skins-css" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/mejs-skins.css" type="text/css" media="all">
+<script type="text/javascript">
+var iworks_upprev = { animation: 'fade', position: 'right', offset_percent: 60, offset_element: '#comments', css_width: 350, css_side: 5, compare: 'tag', url_new_window: 0, ga_track_views: 1, ga_track_clicks: 1, ga_opt_noninteraction: 1, title: 'Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков' };
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery_005.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery-migrate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var samAjax = {"ajaxurl":"http:\/\/dedushka.org\/wp-content\/plugins\/simple-ads-manager\/sam-ajax.php","loadurl":"http:\/\/dedushka.org\/wp-content\/plugins\/simple-ads-manager\/sam-ajax-loader.php","load":"","mailer":"1","clauses":"YTo0OntzOjI6IldDIjtzOjE5Mzg6IihJRihzYS5hZF91c2VycyA9IDAsIFRSVUUsIChzYS5hZF91c2Vyc191bnJlZyA9IDEpKSkgQU5EICgoc2Eudmlld190eXBlID0gMSkgT1IgKHNhLnZpZXdfdHlwZSA9IDAgQU5EIChzYS52aWV3X3BhZ2VzKzAgJiA2KSkgT1IgKHNhLnZpZXdfdHlwZSA9IDIgQU5EIEZJTkRfSU5fU0VUKDgzNTMsIHNhLnZpZXdfaWQpKSkgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLmFkX2NhdHMgQU5EIElGKHNhLnZpZXdfdHlwZSA9IDAsIHNhLnZpZXdfcGFnZXMrMCAmIDYsIFRSVUUpLCBGSU5EX0lOX1NFVCgidXJva2kiLCBzYS52aWV3X2NhdHMpLCBUUlVFKSAgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLmFkX2F1dGhvcnMgQU5EIElGKHNhLnZpZXdfdHlwZSA9IDAsIHNhLnZpZXdfcGFnZXMrMCAmIDYsIFRSVUUpLCBGSU5EX0lOX1NFVCgiYWRtaW4iLCBzYS52aWV3X2F1dGhvcnMpLCBUUlVFKSAgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLmFkX3RhZ3MgQU5EIElGKHNhLnZpZXdfdHlwZSA9IDAsIHNhLnZpZXdfcGFnZXMrMCAmIDYsIFRSVUUpLCBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwIiwgc2Eudmlld190YWdzKSBPUiBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwLWpzIiwgc2Eudmlld190YWdzKSBPUiBGSU5EX0lOX1NFVCgianMiLCBzYS52aWV3X3RhZ3MpLCBUUlVFKSAgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLmFkX2N1c3RvbV90YXhfdGVybXMgQU5EIElGKHNhLnZpZXdfdHlwZSA9IDAsIHNhLnZpZXdfcGFnZXMrMCAmIDYsIFRSVUUpLCBGSU5EX0lOX1NFVCgidXJva2kiLCBzYS52aWV3X2N1c3RvbV90YXhfdGVybXMpIE9SIEZJTkRfSU5fU0VUKCJib290c3RyYXAiLCBzYS52aWV3X2N1c3RvbV90YXhfdGVybXMpIE9SIEZJTkRfSU5fU0VUKCJib290c3RyYXAtanMiLCBzYS52aWV3X2N1c3RvbV90YXhfdGVybXMpIE9SIEZJTkRfSU5fU0VUKCJqcyIsIHNhLnZpZXdfY3VzdG9tX3RheF90ZXJtcyksIFRSVUUpICBBTkQgSUYoc2EueF9pZCwgTk9UIEZJTkRfSU5fU0VUKDgzNTMsIHNhLnhfdmlld19pZCksIFRSVUUpICBBTkQgSUYoc2Eudmlld190eXBlIDwgMiBBTkQgc2EueF9jYXRzIEFORCBJRihzYS52aWV3X3R5cGUgPSAwLCBzYS52aWV3X3BhZ2VzKzAgJiA2LCBUUlVFKSwgKE5PVCBGSU5EX0lOX1NFVCgidXJva2kiLCBzYS54X3ZpZXdfY2F0cykpLCBUUlVFKSAgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLnhfYXV0aG9ycyBBTkQgSUYoc2Eudmlld190eXBlID0gMCwgc2Eudmlld19wYWdlcyswICYgNiwgVFJVRSksIE5PVCBGSU5EX0lOX1NFVCgiYWRtaW4iLCBzYS54X3ZpZXdfYXV0aG9ycyksIFRSVUUpICBBTkQgSUYoc2Eudmlld190eXBlIDwgMiBBTkQgc2EueF90YWdzIEFORCBJRihzYS52aWV3X3R5cGUgPSAwLCBzYS52aWV3X3BhZ2VzKzAgJiA2LCBUUlVFKSwgKE5PVCBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwIiwgc2EueF92aWV3X3RhZ3MpKSBBTkQgKE5PVCBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwLWpzIiwgc2EueF92aWV3X3RhZ3MpKSBBTkQgKE5PVCBGSU5EX0lOX1NFVCgianMiLCBzYS54X3ZpZXdfdGFncykpLCBUUlVFKSAgQU5EIElGKHNhLnZpZXdfdHlwZSA8IDIgQU5EIHNhLnhfYWRfY3VzdG9tX3RheF90ZXJtcyBBTkQgSUYoc2Eudmlld190eXBlID0gMCwgc2Eudmlld19wYWdlcyswICYgNiwgVFJVRSksIChOT1QgRklORF9JTl9TRVQoInVyb2tpIiwgc2EueF92aWV3X2N1c3RvbV90YXhfdGVybXMpKSBBTkQgKE5PVCBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwIiwgc2EueF92aWV3X2N1c3RvbV90YXhfdGVybXMpKSBBTkQgKE5PVCBGSU5EX0lOX1NFVCgiYm9vdHN0cmFwLWpzIiwgc2EueF92aWV3X2N1c3RvbV90YXhfdGVybXMpKSBBTkQgKE5PVCBGSU5EX0lOX1NFVCgianMiLCBzYS54X3ZpZXdfY3VzdG9tX3RheF90ZXJtcykpLCBUUlVFKSI7czozOiJXQ1QiO3M6MzYyOiIgQU5EIElGKHNhLmFkX3NjaGVkdWxlLCBDVVJEQVRFKCkgQkVUV0VFTiBzYS5hZF9zdGFydF9kYXRlIEFORCBzYS5hZF9lbmRfZGF0ZSwgVFJVRSkgQU5EIElGKHNhLmxpbWl0X2hpdHMsIHNhLmhpdHNfbGltaXQgPiAoU0VMRUNUIElGTlVMTChDT1VOVCgqKSwgMCkgRlJPTSBudF9zYW1fc3RhdHMgc3MgV0hFUkUgc3MuaWQgPSBzYS5pZCBBTkQgc3MuZXZlbnRfdHlwZSA9IDApLCBUUlVFKSBBTkQgSUYoc2EubGltaXRfY2xpY2tzLCBzYS5jbGlja3NfbGltaXQgPiAoU0VMRUNUIElGTlVMTChDT1VOVCgqKSwgMCkgRlJPTSBudF9zYW1fc3RhdHMgc3MgV0hFUkUgc3MuaWQgPSBzYS5pZCBBTkQgc3MuZXZlbnRfdHlwZSA9IDEpLCBUUlVFKSI7czozOiJXQ1ciO3M6ODA6IiBBTkQgSUYoc2EuYWRfd2VpZ2h0ID4gMCwgKHNhLmFkX3dlaWdodF9oaXRzKjEwLyhzYS5hZF93ZWlnaHQqMTAwMCkpIDwgMSwgRkFMU0UpIjtzOjQ6IldDMlciO3M6MjI6IkFORCAoc2EuYWRfd2VpZ2h0ID4gMCkiO30=","doStats":"1","container":"sam-container","place":"sam-place","ad":"sam-ad"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/sam-layout.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/upprev.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/validator.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery_003.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery_002.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpdiscuzAjaxObj = {"url":"http:\/\/dedushka.org\/wp-admin\/admin-ajax.php","wpdiscuz_options":{"wc_hide_replies_text":"\u0421\u043f\u0440\u044f\u0442\u0430\u0442\u044c \u043e\u0442\u0432\u0435\u0442\u044b","wc_show_replies_text":"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043e\u0442\u0432\u0435\u0442\u044b","wc_msg_required_fields":"\u0417\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u043f\u043e\u043b\u044f","wc_invalid_field":"\u041d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043f\u043e\u043b\u044f \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u044b \u043d\u0435\u0432\u0435\u0440\u043d\u043e","wc_invalid_captcha":"\u041d\u0435\u0432\u0435\u0440\u043d\u043e \u0432\u0432\u0435\u0434\u0435\u043d \u043a\u043e\u0434","wc_error_empty_text":"\u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0437\u0430\u043f\u043e\u043b\u043d\u0438\u0442\u0435 \u044d\u0442\u043e \u043f\u043e\u043b\u0435, \u0447\u0442\u043e\u0431\u044b \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c","wc_error_url_text":"\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430","wc_error_email_text":"\u0410\u0434\u0440\u0435\u0441 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u0435\u043d","wc_login_to_vote":"\u0412\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0432\u043e\u0439\u0442\u0438 , \u0447\u0442\u043e\u0431\u044b \u043f\u0440\u043e\u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u0442\u044c","wc_deny_voting_from_same_ip":"\u0412\u044b \u043d\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u0442\u044c \u0437\u0430 \u044d\u0442\u043e\u0442 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439","wc_self_vote":"\u0412\u044b \u043d\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u0442\u044c \u0437\u0430 \u0441\u0432\u043e\u0439 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439","wc_vote_only_one_time":"\u0412\u044b \u0443\u0436\u0435 \u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u043b\u0438 \u0437\u0430 \u044d\u0442\u043e\u0442 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439","wc_voting_error":"\u041e\u0448\u0438\u0431\u043a\u0430 \u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u043d\u0438\u044f","wc_captcha_show_hide":0,"wc_msg_input_min_length":"Input is too short","wc_msg_input_max_length":"Input is too long","wc_held_for_moderate":"\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439 \u043e\u0436\u0438\u0434\u0430\u0435\u0442 \u043c\u043e\u0434\u0435\u0440\u0430\u0446\u0438\u0438","wc_comment_edit_not_possible":"\u0418\u0437\u0432\u0438\u043d\u0438\u0442\u0435, \u043d\u043e \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439 \u0443\u0436\u0435 \u043d\u0435\u043b\u044c\u0437\u044f \u043e\u0431\u043d\u043e\u0432\u0438\u0442\u044c","wc_comment_not_updated":"\u0418\u0437\u0432\u0438\u043d\u0438\u0442\u0435, \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439 \u043d\u0435 \u0431\u044b\u043b \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d","wc_comment_not_edited":"\u0412\u044b \u043d\u0435 \u0441\u0434\u0435\u043b\u0430\u043b\u0438 \u043d\u0438\u043a\u0430\u043a\u0438\u0445 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0439","wc_new_comment_button_text":"\u043d\u043e\u0432\u044b\u0439 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439","wc_new_comments_button_text":"\u043d\u043e\u0432\u044b\u0435 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438","wc_new_reply_button_text":"\u043d\u043e\u0432\u044b\u0439 \u043e\u0442\u0432\u0435\u0442 \u043d\u0430 \u0432\u0430\u0448 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439","wc_new_replies_button_text":"\u043d\u043e\u0432\u044b\u0435 \u043e\u0442\u0432\u0435\u0442\u044b \u043d\u0430 \u0432\u0430\u0448\u0438 \u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438","wc_captcha_show_hide_for_members":0,"is_email_field_required":"1","is_user_logged_in":false,"commentListLoadType":"2","commentListUpdateType":"0","commentListUpdateTimer":"600","liveUpdateGuests":"1","wc_comment_bg_color":"#FEFEFE","wc_reply_bg_color":"#F8F8F8","wordpress_comment_order":"desc","commentsVoteOrder":true,"wordpressThreadCommentsDepth":"2","wordpressIsPaginate":"1","commentTextMaxLength":5000,"storeCommenterData":100000,"isCaptchaInSession":false,"version":"3.2.6","wc_post_id":8353,"loadLastCommentId":"104072"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/wpdiscuz.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/mediaelement-and-player.js"></script>
+<link rel="https://api.w.org/" href="http://dedushka.org/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://dedushka.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://dedushka.org/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Wunderlist стал частью Microsoft" href="http://dedushka.org/soft/8362.html">
+<link rel="next" title="Будущее здесь? Скейт без колес оказался фейком (почти)" href="http://dedushka.org/blog/8380.html">
+<meta name="generator" content="WordPress 4.4.2">
+<link rel="canonical" href="http://dedushka.org/uroki/8353.html">
+<link rel="shortlink" href="http://wp.me/p1V9hj-2aJ">
+<link rel="alternate" type="application/json+oembed" href="http://dedushka.org/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fdedushka.org%2Furoki%2F8353.html">
+<link rel="alternate" type="text/xml+oembed" href="http://dedushka.org/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fdedushka.org%2Furoki%2F8353.html&amp;format=xml">
+<script type="text/javascript">
+var iworks_upprev = { animation: 'fade', position: 'right', offset_percent: 60, offset_element: '#comments', css_width: 350, css_side: 5, compare: 'tag', url_new_window: 0, ga_track_views: 1, ga_track_clicks: 1, ga_opt_noninteraction: 1, title: 'Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков' };
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/library.js"></script>
+<!-- Start of SAM 2.9.7.123 scripts -->
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/google_service.js"></script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService('ca-pub-7280770907817284');
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+  GA_googleFetchAds();
+</script>
+<!-- End of SAM 2.9.7.123 scripts -->
+
+<!-- WP Youtube Player 1.7 by unijimpe -->
+<style type="text/css">#wpcomm .wc_new_comment{background:#00B38F;}#wpcomm .wc_new_reply{background:#00B38F;}#wpcomm .wc-form-wrapper{background:#F9F9F9;}#wpcomm select,#wpcomm input[type="text"],#wpcomm input[type="email"],#wpcomm input[type="url"]{border:#D9D9D9 1px solid;}#wpcomm .wc-comment .wc-comment-right{background:#FEFEFE;}#wpcomm .wc-reply .wc-comment-right{background:#F8F8F8;}#wpcomm .wc-comment-text{font-size:14px;color:#555;}#wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-administrator > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-editor > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-author > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-contributor > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-subscriber > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-post_author > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-guest > .wc-comment-left .wc-comment-label{background:#00B38F;}#wpcomm .wc-comment-footer a,#wpcomm .wc-comment-footer span.wc_editable_comment,#wpcomm .wc-comment-footer span.wc_save_edited_comment,#wpcomm span.wc_cancel_edit{color:#666666;}#wpcomm .wc-comment-footer .wc-vote-result{background:#666666;}#wpcomm .wc-reply-link,#wpcomm .wc-vote-link,#wpcomm .wc-share-link{color:#666666;}.wc-load-more-submit{border:1px solid #D9D9D9;}#wpcomm .wc-new-loaded-comment > .wc-comment-right{background:#FFFAD6;}.comments-area{width:auto;}.wpdiscuz-front-actions{background:#F9F9F9;}.wpdiscuz-subscribe-bar{background:#F9F9F9;}.wpdiscuz-sort-buttons{color:#666666;}.wpdiscuz-sort-button{color:#666666; cursor:pointer;}.wpdiscuz-sort-button:hover{color:#00B38F;cursor:pointer;}.wpdiscuz-sort-button-active{color:#00B38F!important;cursor:default!important;}#wpcomm .page-numbers{color:#555;border:#555 1px solid;}#wpcomm span.current{background:#555;}#wpcomm .wpdiscuz-readmore{cursor:pointer;color:#00B38F;} #wpcomm .wpdiscuz-textarea-wrap{border:#D9D9D9 1px solid;}</style>
+            <style type="text/css">img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков">
+<meta property="og:url" content="http://dedushka.org/uroki/8353.html">
+<meta property="og:description" content="В Bootstrap можно легко свернуть горы блочных элементов. Все, как обычно, не требует особых знаний и много времени, достаточно прочесть этот пост.…">
+<meta property="article:published_time" content="2015-08-04T12:24:32+00:00">
+<meta property="article:modified_time" content="2015-12-16T14:06:22+00:00">
+<meta property="article:author" content="https://www.facebook.com/ntokarr">
+<meta property="og:site_name" content="Dedushka.org">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:site" content="@dedushkaa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@dedushkaa">
+
+<!-- BEGIN GADWP v4.9.2 Universal Tracking - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-23131825-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- END GADWP Universal Tracking -->
+
+<style type="text/css">
+#upprev_box{bottom:5px;width:350px;right:5px;display:none;display:none;}
+ </style>
+<meta charset="utf-8">
+<title>Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков  »  Dedushka.org</title>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/production.js"></script>
+<link href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/style.css">
+<!--[if lt IE 9]> <script src="http://dedushka.org/wp-content/themes/ntk/js/html5.js" type="text/javascript"></script> <![endif]-->
+<meta property="article:author" content="https://facebook.com/ntokarr">
+<meta name="twitter:site" content="@dedushkaa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@dedushkaa">
+<meta property="og:site_name" content="Назар Токарь">
+
+
+<meta property="og:title" content="Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков   Dedushka.org">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://dedushka.org/img/upl/2015/07/ed79acb0cd3d7f8320c53c7798335ef0.png">
+<meta property="og:url" content="http://dedushka.org">
+
+<script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/social-likes.js"></script>
+</head>
+
+<body class="wpdiscuz_3.2.6" data-spy="scroll">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1646735392214438";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-23131825-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20963398 = new Ya.Metrika({id:20963398, webvisor:true, clickmap:true, accurateTrackBounce:true, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/20963398" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<nav class="navbar-main navbar-inverse hidden-sm hidden-xs" role="navigation">
+	<nav class="container">
+
+		<form method="get" class="searchbox navbar-form navbar-left" action="/">
+			<div class="input-group form-group">
+				<input class="form-control search_input input-sm" placeholder="Поиск" name="s" id="s" type="text">
+				<span class="input-group-btn">
+					<button class="btn btn-success input-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+				</span>
+			</div>
+		</form>
+
+		<ul class="nav navbar-nav navbar-left">
+			
+			<li><a href="http://qbx.me/"><i class="glyphicon glyphicon-comment"></i> Форум</a></li>
+
+			
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Translate! <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+									<li><a href="http://google.com/translate?tl=en&amp;u=http://dedushka.org/uroki/8353.html">English</a></li>
+					<li><a href="http://google.com/translate?tl=uk&amp;u=http://dedushka.org/uroki/8353.html">Українська</a></li>
+					<li><a href="http://google.com/translate?tl=de&amp;u=http://dedushka.org/uroki/8353.html">Deutsch</a></li>
+					<li><a href="http://google.com/translate?tl=es&amp;u=http://dedushka.org/uroki/8353.html">Español</a></li>
+					<li><a href="http://google.com/translate?tl=pl&amp;u=http://dedushka.org/uroki/8353.html">Polski</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<ul class="social list-inline">
+					<li class="gplus"><a href="https://youtube.com/user/ntokar2"><i data-icon="w"></i></a></li>
+					<li class="rss"><a href="http://feeds.feedburner.com/dedushka-org"><i data-icon="e"></i></a></li>
+					<li class="gplus"><a href="http://plus.google.com/111127214491220322254" rel="author"><i data-icon="c"></i></a></li>
+					<li class="fb"><a href="http://fb.com/ntokarr"><i data-icon="b"></i></a></li>
+					<li class="twitter"><a href="http://twitter.com/dedushkaa"><i data-icon="d"></i></a></li>
+					<li class="mail"><a href="#mail" data-toggle="modal" data-target="#mailSubscribe"><i class="glyphicon glyphicon-envelope"></i></a></li>
+					<li class="vk"><a href="http://vk.com/dedushka_org"><i data-icon="f"></i></a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</nav>
+
+<header class="hidden-sm hidden-xs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 title">
+				<header><a href="http://dedushka.org/">Dedushka.org</a></header>
+				<footer>Создание сайтов: Bootstrap, верстка, Wordpress</footer>
+			</div>
+
+			<nav class="col-md-8">
+
+				<section class="col-sm-4">
+					<ul class="dropdown">
+						<li class="dropdown-top">
+							<a class="dropdown-top" href="http://dedushka.org/"><i class="glyphicon glyphicon-chevron-down"></i>Программы</a>
+							<ul class="dropdown-inside">
+								<li><a href="http://dedushka.org/tag/whatsapp">WhatsApp</a></li>
+								<li><a href="http://dedushka.org/tag/viber">Viber</a></li>
+								<li><a href="http://dedushka.org/tag/telegram">Telegram</a></li>
+								<li><a href="http://dedushka.org/tag/sublime-text">Sublime Text</a></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section class="col-sm-4">
+					<ul class="dropdown">
+						<li class="dropdown-top">
+							<a class="dropdown-top" href="http://dedushka.org/"><i class="glyphicon glyphicon-chevron-down"></i>Скрипты</a>
+							<ul class="dropdown-inside">
+								<li><a href="http://dedushka.org/tag/callme">Обратный звонок</a></li>
+								<li><a href="http://dedushka.org/tag/buyme">Покупка за 1 клик</a></li>
+								<li><a href="http://dedushka.org/tag/bukvus">Проверка орфографии</a></li>
+								<li><a href="http://dedushka.org/tag/quickbox">Просмотр фото</a></li>
+								<li class="divider"></li>
+								<li><a href="http://dedushka.org/stats">Статистика</a></li>
+								<li><a href="http://dedushka.org/scripts"><b>Установка скриптов</b></a></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section class="col-sm-4">
+					<ul class="dropdown">
+						<li class="dropdown-top">
+							<a class="dropdown-top" href="http://dedushka.org/"><i class="glyphicon glyphicon-chevron-down"></i>Верстка и код</a>
+							<ul class="dropdown-inside">
+						<li><a href="http://dedushka.org/tag/css">CSS</a></li>
+						<li><a href="http://dedushka.org/tag/sass">Sass</a></li>
+						<li><a href="http://dedushka.org/tag/html">HTML</a></li>
+						<li><a href="http://dedushka.org/tag/js">JS + jQuery</a></li>
+						<li><a href="http://dedushka.org/tag/verstka"><b>Вёрстка сайтов</b></a></li>
+						<li><a href="http://dedushka.org/tag/bootstrap"><b>Bootstrap</b></a></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+			</nav>
+		</div>
+	</div>
+</header>
+
+<div class="navbar navbar-inverse visible-xs visible-sm hidden-md hidden-lg">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<i class="glyphicon glyphicon-menu-hamburger"></i> Меню
+			</a>
+
+			<a class="brand btn" href="http://dedushka.org/">Dedushka.org | Мобильный дедушка</a>
+
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+						<li class="cat-item cat-item-1"><a href="http://dedushka.org/category/advises">cоветы</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://dedushka.org/category/blog">блог</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://dedushka.org/category/design">дизайн</a>
+</li>
+	<li class="cat-item cat-item-87"><a href="http://dedushka.org/category/interesno">интересно</a>
+</li>
+	<li class="cat-item cat-item-75"><a href="http://dedushka.org/category/kod">код</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://dedushka.org/category/soft">софт</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="http://dedushka.org/category/uroki">уроки</a>
+</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="main-menu hidden-md hidden-sm hidden-xs">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-sm-12">
+				<menu class="nav navbar-nav">
+						<li class="cat-item cat-item-1"><a href="http://dedushka.org/category/advises">cоветы</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://dedushka.org/category/blog">блог</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://dedushka.org/category/design">дизайн</a>
+</li>
+	<li class="cat-item cat-item-87"><a href="http://dedushka.org/category/interesno">интересно</a>
+</li>
+	<li class="cat-item cat-item-75"><a href="http://dedushka.org/category/kod">код</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://dedushka.org/category/soft">софт</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="http://dedushka.org/category/uroki">уроки</a>
+</li>
+				</menu>
+			</div>
+			<div class="col-md-4 hidden-sm hidden-xs">
+				<menu class="nav navbar-nav navbar-right">
+					<li><a href="mailto:a@dedushka.org">Почта</a></li>
+					<li><a href="http://dedushka.org/whois">Whois</a></li>
+					<li><a href="http://dedushka.org/partnership"><b>Сотрудничество</b></a></li>
+				</menu>
+			</div>
+		</div>
+	</div>
+</div><div class="container text-center"><div class="dsa simple_ads_manager_widget dsa-please" id="simple_ads_manager_widget-3">Пожалуйста, отключите AdBlock на моём сайте<br>dedushka.org существует только за счёт этих объявлений. Спасибо! :)</div></div>
+<div class="container single-post">
+
+	<div class="row">
+		<article class="col-lg-9">
+			<header>
+								<div class="top row">
+					<div class="col-sm-5">
+						<i class="glyphicon glyphicon-calendar"></i> 4 августа 2015 
+					</div>
+					<div class="col-sm-2">
+						<i class="glyphicon glyphicon-eye-open"></i> 16 231					</div>
+
+					<div class="col-sm-5">
+						Рубрика: 
+						<a href="http://dedushka.org/category/uroki">уроки</a>					</div>
+					
+				</div>
+
+				<h1>Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков </h1>
+
+				<div class="row share visible-md">
+					<div class="col-md-3 text-center social-likes social-likes_visible">
+						<div class="social-likes__widget social-likes__widget_plusone" title="Поделиться в Гугл-плюсе"><span class="social-likes__button social-likes__button_plusone"><span class="social-likes__icon social-likes__icon_plusone"></span>Google+</span></div>
+					</div>
+					<div class="col-md-3 text-center social-likes social-likes_visible social-likes_ready">
+						<div class="social-likes__widget social-likes__widget_vkontakte" title="Поделиться во Вконтакте"><span class="social-likes__button social-likes__button_vkontakte"><span class="social-likes__icon social-likes__icon_vkontakte"></span>Вконтакте</span><span class="social-likes__counter social-likes__counter_vkontakte">5</span></div>
+					</div>
+					<div class="col-md-3 text-center social-likes social-likes_visible">
+						<div class="social-likes__widget social-likes__widget_twitter" data-via="dedushkaa" title="Поделиться в Твиттере"><span class="social-likes__button social-likes__button_twitter"><span class="social-likes__icon social-likes__icon_twitter"></span>Twitter</span></div>
+					</div>
+					<div class="col-md-3 text-center social-likes social-likes_visible">
+						<div class="social-likes__widget social-likes__widget_facebook" title="Поделиться на Фейсбуке"><span class="social-likes__button social-likes__button_facebook"><span class="social-likes__icon social-likes__icon_facebook"></span>Facebook</span></div>
+					</div>
+				</div>
+
+				<div class="post-preview"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/64e1e1cbe1ca8e88ef3a838a3e7b57d6.png" alt=""></div><div class="quote"><p>В
+ Bootstrap можно легко свернуть горы блочных элементов. Все, как обычно,
+ не требует особых знаний и много времени, достаточно прочесть этот 
+пост.</p>
+</div>
+			</header>
+			
+			<p>В Bootstrap есть плагин, который отвечает за плавное сворачивание и
+ разворачивание блоков. Эта функция крайне&nbsp;удобна и может 
+использоваться где угодно:</p>
+<ul>
+<li>в навигации</li>
+<li>для спойлеров</li>
+<li>для блоков со скрытым&nbsp;текстом</li>
+<li>свернутых пунктов&nbsp;меню</li>
+<li>ответов на часто задаваемые вопросы</li>
+</ul>
+<p>Из своего опыта могу сказать, что если ваш проект работает с 
+использованием бутстрапа то collapse&nbsp;вы будете 
+использовать&nbsp;постоянно.&nbsp;Плагин крайне прост в работе, не 
+требует особой&nbsp;настройки и позволяет сворачивать любые блочные 
+элементы. Сейчас я расскажу, как его использовать.</p>
+<div id="toc_container" class="no_bullets"><p class="toc_title">Содержание <span class="toc_toggle">[<a href="#">скрыть</a>]</span></p><ul class="toc_list"><li><a href="#i"><span class="toc_number toc_depth_1">1</span> Пример</a></li><li><a href="#i-2"><span class="toc_number toc_depth_1">2</span> Настройка</a><ul><li><a href="#_data"><span class="toc_number toc_depth_2">2.1</span> Настройка через data-* атрибуты</a></li><li><a href="#_javaScript"><span class="toc_number toc_depth_2">2.2</span> Настройка через javaScript</a></li></ul></li><li><a href="#__accordion"><span class="toc_number toc_depth_1">3</span> Автоскрытие остальных блоков (accordion)</a></li><li><a href="#_collapse_Bootstrapjs"><span class="toc_number toc_depth_1">4</span> Методы collapse в Bootstrap.js</a></li><li><a href="#_bootstrap_collapse"><span class="toc_number toc_depth_1">5</span> Параметры bootstrap collapse</a></li><li><a href="#i-3"><span class="toc_number toc_depth_1">6</span> Пример: простое скрытие элементов</a></li><li><a href="#_____accordion"><span class="toc_number toc_depth_1">7</span> Пример: сворачивание остальных блоков внутри родительского (эффект гармошки или accordion)</a><ul><li><ul><li><a href="#i-4"><span class="toc_number toc_depth_3">7.0.1</span> Первый элемент</a></li><li><a href="#i-5"><span class="toc_number toc_depth_3">7.0.2</span> Второй элемент</a></li><li><a href="#i-6"><span class="toc_number toc_depth_3">7.0.3</span> Третий элемент</a></li></ul></li></ul></li></ul></div>
+<h2><span id="i">Пример</span></h2>
+<p>Для примера я создал кнопку&nbsp;и скрытый текстовый блок. По клику на кнопке&nbsp;блок будет либо показан, либо свернут.</p>
+<div class="example">
+<p><a class="btn btn-info" href="#demo" data-toggle="collapse">Ссылка</a> <button class="btn btn-info" data-toggle="collapse" data-target="#demo">Кнопка</button></p>
+<div id="demo" class="collapse">Нострадамус родился в селе Сен-Реми, что
+ во Франции, в семье собственных родителей. Уже в юности пророк мог 
+предсказать наступление следующего дня, погоду на Марсе и прочие 
+интересные вещи. Однако к 1518 году, вконец замучив набожных селян 
+скорыми предсказаниями конца света, был выгнан в Авиньон с целью учебы. 
+Прикинувшись потомком великих людей, быстро получил степень магистра 
+искусств.</div>
+</div>
+<h2><span id="i-2">Настройка</span></h2>
+<p>Вам нужны два объекта, где первый будет управлять видимостью второго. Первым может быть&nbsp;ссылка или кнопка.</p>
+<p>Чтобы «указать» управляющему элементу, какой блок нужно сворачивать, есть два метода:</p>
+<ol>
+<li>атрибут <code>href</code> для ссылки,</li>
+<li>кнопка или любой другой объект с&nbsp;атрибутом&nbsp;<code>data-target</code>.</li>
+</ol>
+<p>В обоих случаях этот элемент должен иметь атрибут the <code>data-toggle="collapse"</code>.&nbsp;Второму блоку, который должен быть скрыт, нужно назначить класс <code>.collapse</code>.</p>
+<h3><span id="_data">Настройка через data-* атрибуты</span></h3>
+<p>Добавьте атрибуты <code>data-toggle="collapse"</code> и <code>data-target</code> управляющему элементу. Атрибут <code>data-target</code> должен содержать CSS-селектор элемента, видимость которого нужно менять. Также управляемому элементу нужно назначить класс <code>.collapse</code>.</p>
+<p>По умолчанию такой элемент будет скрытым при загрузке страницы. Если 
+вы хотите, чтобы он был видимым, добавьте ему дополнительно класс <code>.in</code>.</p>
+<h3><span id="_javaScript">Настройка через javaScript</span></h3>
+<p>Если <code>data-*</code> атрибуты вам не подходят, можно обойтись без них, подключив коллапс при помощи js:</p>
+<pre class=" hljs javascript">$(<span class="hljs-string">'.collapse'</span>).collapse()</pre>
+<h2><span id="__accordion">Автоскрытие остальных блоков (accordion)</span></h2>
+<p>Чтобы автоматически сворачивать все остальные элементы при показе нового, передайте параметр <code>data-parent="#selector"</code>, где <code>#selector</code>
+ может быть идентификатором, классом или любым другим css-селектором 
+родительского элемента. Это удобно для показа ответов на часто 
+задаваемые вопросы. Так, после выбора одного из ответов, все остальные 
+автоматически будут свернуты.&nbsp;Код такого блока вы найдете в 
+примерах ниже.</p>
+<h2><span id="_collapse_Bootstrapjs">Методы collapse в Bootstrap.js</span></h2>
+<table class="table">
+<tbody>
+<tr>
+<th>Метод</th>
+<th>Описание</th>
+</tr>
+<tr>
+<td><code>.collapse(options)</code></td>
+<td>Инициализирует скрываемый элемент с параметрами options. В следующей таблице представлены варианты параметров.</td>
+</tr>
+<tr>
+<td><code>.collapse("toggle")</code></td>
+<td>Сворачивает или разворачивает элемент. Зависит от текущего состояния.</td>
+</tr>
+<tr>
+<td><code>.collapse("show")</code></td>
+<td>Разворачивает элемент.</td>
+</tr>
+<tr>
+<td><code>.collapse("hide")</code></td>
+<td>Сворачивает элемент.</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="_bootstrap_collapse">Параметры bootstrap collapse</span></h2>
+<p>Параметры, как и инициализацию объекта, можно передавать при помощи <code>data-*</code> атрибутов или через JavaScript. В первом случае имя атрибута идет после <code>data-</code>, например, <code>data-parent=".container"</code>.</p>
+<table class="table">
+<tbody>
+<tr>
+<th>Парамер</th>
+<th>Тип</th>
+<th>По&nbsp;умолчанию</th>
+<th>Описание</th>
+</tr>
+<tr>
+<td><code>parent</code></td>
+<td><code>selector</code></td>
+<td><code>false</code></td>
+<td>Если вы передаете селектор, то все скрываемые элементы внутри его будут скрыты при показе родительского блока.</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Менять ли видимость элемента при вызове</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="i-3">Пример: простое скрытие элементов</span></h2>
+<p>Это самый простой пример работы скрипта:</p>
+<pre class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-info"</span> <span class="hljs-attribute">data-toggle</span>=<span class="hljs-value">"collapse"</span> <span class="hljs-attribute">data-target</span>=<span class="hljs-value">"#hide-me"</span>&gt;</span>Collapse Bootstrap.js<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"hide-me"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"collapse in"</span>&gt;</span>
+Анонимус — посетители анонимных борд, которые почти все являются анонимами.
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+<p>Обратите внимание: благодаря классу <code>.in</code> сворачиваемый элемент по умолчанию виден.</p>
+<div class="example">
+<p><button class="btn btn-info" data-toggle="collapse" data-target="#hide-me">Collapse Bootstrap.js</button></p>
+<div style="" id="hide-me" class="collapse in">Анонимус — посетители анонимных борд, которые почти все являются анонимами.</div>
+</div>
+<h2><span id="_____accordion">Пример: сворачивание остальных блоков внутри родительского (эффект гармошки или accordion)</span></h2>
+<pre class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-group"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"collapse-group"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel panel-default"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-heading"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-title"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-toggle</span>=<span class="hljs-value">"collapse"</span> <span class="hljs-attribute">data-parent</span>=<span class="hljs-value">"#collapse-group"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#el1"</span>&gt;</span>Первый элемент<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"el1"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-collapse collapse in"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-body"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel panel-default"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-heading"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-title"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-toggle</span>=<span class="hljs-value">"collapse"</span> <span class="hljs-attribute">data-parent</span>=<span class="hljs-value">"#collapse-group"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#el2"</span>&gt;</span>Второй элемент<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"el2"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-collapse collapse"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-body"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel panel-default"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-heading"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-title"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">data-toggle</span>=<span class="hljs-value">"collapse"</span> <span class="hljs-attribute">data-parent</span>=<span class="hljs-value">"#collapse-group"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#el3"</span>&gt;</span>Третий элемент<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"el3"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-collapse collapse"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"panel-body"</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+<p>В этом примере при показе нового блока все остальные, которые находятся в том же родительском блоке, будут свернуты.</p>
+<div class="example">
+<div id="collapse-group" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><span id="i-4"><a class="" href="#el1" data-toggle="collapse" data-parent="#collapse-group">Первый элемент</a></span></h4>
+</div>
+<div style="" id="el1" class="panel-collapse collapse in">
+<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><span id="i-5"><a class="collapsed" href="#el2" data-toggle="collapse" data-parent="#collapse-group">Второй элемент</a></span></h4>
+</div>
+<div style="height: 0px;" id="el2" class="panel-collapse collapse">
+<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><span id="i-6"><a class="collapsed" href="#el3" data-toggle="collapse" data-parent="#collapse-group">Третий элемент</a></span></h4>
+</div>
+<div style="height: 0px;" id="el3" class="panel-collapse collapse">
+<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</div>
+</div>
+</div>
+</div>
+<p>Желаю успехов в изучении!</p>
+<script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+<div style="    text-align: left;" data-lang="ru" data-url="http://dedushka.org/uroki/8353.html" data-background-alpha="0.0" data-buttons-color="#ffffff" data-counter-background-color="#ffffff" data-share-counter-size="11" data-top-button="true" data-share-counter-type="common" data-share-style="13" data-mode="share" data-like-text-enable="false" data-hover-effect="scale" data-mobile-view="true" data-icon-color="#ffffff" data-orientation="fixed-left" data-text-color="#000000" data-share-shape="round-rectangle" data-sn-ids="tw.fb.vk.gt.gp.ok.em." data-share-size="30" data-background-color="#ffffff" data-preview-mobile="false" data-mobile-sn-ids="fb.gt.vk.tw.wh.vb." data-pid="cmsdedushkaorg" data-counter-background-alpha="1.0" data-following-enable="false" data-exclude-show-more="true" data-selection-enable="false" class="uptolike-buttons"></div>
+
+			<div class="dl-horizontal tags visible-md visible-lg">
+				<a class="btn btn-default btn-sm" href="http://dedushka.org/tag/bootstrap">bootstrap</a> <a class="btn btn-default btn-sm" href="http://dedushka.org/tag/bootstrap-js">bootstrap.js</a> <a class="btn btn-default btn-sm" href="http://dedushka.org/tag/js">js</a> 			</div>
+
+			
+				<div class="row share visible-md visible-lg">
+					<div class="col-md-2 text-left">Поделись</div>
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-3 social-likes social-likes_visible">
+								<div class="social-likes__widget social-likes__widget_plusone" title="Поделиться в Гугл-плюсе"><span class="social-likes__button social-likes__button_plusone"><span class="social-likes__icon social-likes__icon_plusone"></span>Google+</span></div>
+							</div>
+							<div class="col-md-3 social-likes social-likes_visible social-likes_ready">
+								<div class="social-likes__widget social-likes__widget_vkontakte" title="Поделиться во Вконтакте"><span class="social-likes__button social-likes__button_vkontakte"><span class="social-likes__icon social-likes__icon_vkontakte"></span>Вконтакте</span><span class="social-likes__counter social-likes__counter_vkontakte">5</span></div>
+							</div>
+							<div class="col-md-3 social-likes social-likes_visible">
+								<div class="social-likes__widget social-likes__widget_twitter" data-via="dedushkaa" title="Поделиться в Твиттере"><span class="social-likes__button social-likes__button_twitter"><span class="social-likes__icon social-likes__icon_twitter"></span>Twitter</span></div>
+							</div>
+							<div class="col-md-3 social-likes social-likes_visible">
+								<div class="social-likes__widget social-likes__widget_facebook" title="Поделиться на Фейсбуке"><span class="social-likes__button social-likes__button_facebook"><span class="social-likes__icon social-likes__icon_facebook"></span>Facebook</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+				<ul class="pager">
+					<li class="previous"><a href="http://dedushka.org/uroki/8169.html">« Выпадающие меню и списки</a></li><li class="next"><a href="http://dedushka.org/uroki/9542.html">Всплывающие окна, modal.js »</a></li>				</ul>
+
+				<div id="wcThreadWrapper"></div><a class="show-comments" href="http://dedushka.org/uroki/8353.html?show=comments">Теперь я хочу видеть комментарии 7</a>
+					<div id="relatedposts">
+						<div class="row">
+							
+									<div class="col-md-3">
+										<a href="http://dedushka.org/uroki/9632.html">
+											<img data-lazy-loaded="true" style="display: block;" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0-1.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="уроки bootstrap вкладки и табы preview" height="170" width="250"><noscript><img width="250" height="170" src="http://dedushka.org/img/upl/2015/12/ed79acb0cd3d7f8320c53c7798335ef0-1.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="уроки bootstrap вкладки и табы preview" /></noscript>											<footer>Уроки по Bootstrap: создание вкладок, табов</footer>
+										</a>
+									</div>
+
+									
+									<div class="col-md-3">
+										<a href="http://dedushka.org/uroki/9542.html">
+											<img data-lazy-loaded="true" style="display: block;" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0_002.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="уроки bootstrap всплывающие окна preview" height="170" width="250"><noscript><img width="250" height="170" src="http://dedushka.org/img/upl/2015/12/ed79acb0cd3d7f8320c53c7798335ef0.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="уроки bootstrap всплывающие окна preview" /></noscript>											<footer>Уроки по Bootstrap: всплывающие окна, modal.js</footer>
+										</a>
+									</div>
+
+									
+									<div class="col-md-3">
+										<a href="http://dedushka.org/soft/8814.html">
+											<img data-lazy-loaded="true" style="display: block;" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/6446d860dbbfe540e9e2cbab5f98f1e31.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="koala первью" height="170" width="250"><noscript><img width="250" height="170" src="http://dedushka.org/img/upl/2015/09/6446d860dbbfe540e9e2cbab5f98f1e31.png" class="attachment- img-responsive size- img-responsive wp-post-image" alt="koala первью" /></noscript>											<footer>Обзор программы Koala — легкая компиляция Sass, Less и CoffeeScript</footer>
+										</a>
+									</div>
+
+									
+									<div class="col-md-3">
+										<a href="http://dedushka.org/uroki/8749.html">
+											<img data-lazy-loaded="true" style="display: block;" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/32981a13284db7a021131df49e6cd203.gif" class="attachment- img-responsive size- img-responsive wp-post-image" alt="js preview" height="170" width="250"><noscript><img width="250" height="170" src="http://dedushka.org/img/upl/2013/09/32981a13284db7a021131df49e6cd203.gif" class="attachment- img-responsive size- img-responsive wp-post-image" alt="js preview" /></noscript>											<footer>Как создать плавную прокрутку к части страницы</footer>
+										</a>
+									</div>
+
+																</div>
+						</div>
+
+						
+			</article>
+			<aside style="min-height: 707px;" class="hidden-sm hidden-xs hidden-dmd col-lg-3">
+				<ul class="list-unstyled related">
+	<li><a href="http://dedushka.org/uroki/8114.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0.png" class="thmb visible-md visible-lg" alt="Уроки по Bootstrap. Урок №10: текстовые панели">Уроки по Bootstrap. Урок №10: текстовые панели</a></li><li><a href="http://dedushka.org/uroki/8169.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0_003.png" class="thmb visible-md visible-lg" alt="Уроки по Bootstrap. Урок №11: выпадающие меню и списки">Уроки по Bootstrap. Урок №11: выпадающие меню и списки</a></li><li><a href="http://dedushka.org/kod/6904.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/32981a13284db7a021131df49e6cd203.gif" class="thmb visible-md visible-lg" alt="Простой способ вызова js-функций по событиям">Простой способ вызова js-функций по событиям</a></li><li><a href="http://dedushka.org/uroki/9542.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0_002.png" class="thmb visible-md visible-lg" alt="Уроки по Bootstrap: всплывающие окна, modal.js">Уроки по Bootstrap: всплывающие окна, modal.js</a></li><li><a href="http://dedushka.org/uroki/9632.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ed79acb0cd3d7f8320c53c7798335ef0-1.png" class="thmb visible-md visible-lg" alt="Уроки по Bootstrap: создание вкладок, табов">Уроки по Bootstrap: создание вкладок, табов</a></li><li><a href="http://dedushka.org/advises/8469.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/6bf9e70a1f928aba143ef1eebe2720b5.png" class="thmb visible-md visible-lg" alt="Как удалить иконку OneDrive в проводнике в Windows 10">Как удалить иконку OneDrive в проводнике в Windows 10</a></li><li><a href="http://dedushka.org/uroki/7901.html"><img src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/ee83ff7f361dce8cd28963120f5bd551.jpg" class="thmb visible-md visible-lg" alt="Уроки по HTML и CSS: селекторы nth-child и nth-of-type">Уроки по HTML и CSS: селекторы nth-child и nth-of-type</a></li></ul>
+
+<div id="sticky"></div>
+
+<div style="width: 283px;" id="sticker" data-spy="affix" class="padded-top-sm affix">
+	<div id="simple_ads_manager_widget-6"><div id="c2646_0_4" class="sam-container sam-place" data-sam="0"></div></div><div id="simple_ads_manager_widget-4"><div id="c1281_4_2" class="sam-container sam-place" data-sam="0"><script async="" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/adsbygoogle.js"></script>
+<!-- 300x250 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-7280770907817284" data-ad-slot="5512537954"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+	<div class="panel panel-default panel-warning subscribe">
+		<div class="panel-heading"><b>Я хочу видеть свежие посты</b></div>
+		<div class="panel-body">
+			<div class="btn-group btn-group-justified" id="aside-social">
+				<a class="btn btn-default" target="_blank" href="http://twitter.com/dedushkaa"><i data-icon="d"></i></a>
+				<a class="btn btn-default" target="_blank" href="http://vk.com/dedushka_org"><i data-icon="f"></i></a>
+				<a class="btn btn-default" target="_blank" href="http://fb.com/ntokarr"><i data-icon="b"></i></a>
+				<a class="btn btn-default" target="_blank" href="http://plus.google.com/111127214491220322254" rel="author"><i data-icon="c"></i></a>
+				<a class="btn btn-default" target="_blank" href="http://feeds.feedburner.com/dedushka-org"><i data-icon="e"></i></a>
+			</div>
+		</div>
+	</div>
+
+</div>			</aside>
+		</div>
+	</div><script src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/uptolike.js" async="" charset="UTF-8" type="text/javascript"></script>
+
+			<div class="container text-center"><div class="dsa simple_ads_manager_widget dsa-please" id="simple_ads_manager_widget-5">Пожалуйста, отключите AdBlock на моём сайте<br>dedushka.org существует только за счёт этих объявлений. Спасибо! :)</div></div>
+<footer class="main visible-md visible-lg">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-sm-4">
+						<li id="nav_menu-2" class="widget widget_nav_menu"><h2 class="widgettitle">Программы</h2>
+<div class="menu-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d1%8b-container"><ul id="menu-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d1%8b" class="menu"><li id="menu-item-9611" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9611"><a href="http://dedushka.org/tag/whatsapp">WhatsApp</a></li>
+<li id="menu-item-9612" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9612"><a href="http://dedushka.org/tag/viber">Viber</a></li>
+<li id="menu-item-9613" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9613"><a href="http://dedushka.org/tag/telegram">Telegram</a></li>
+<li id="menu-item-9614" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9614"><a href="http://dedushka.org/tag/sublime-text">Sublime text</a></li>
+</ul></div></li>
+					</div>
+					<div class="col-sm-4">
+						<li id="nav_menu-3" class="widget widget_nav_menu"><h2 class="widgettitle">Скрипты</h2>
+<div class="menu-%d1%81%d0%ba%d1%80%d0%b8%d0%bf%d1%82%d1%8b-container"><ul id="menu-%d1%81%d0%ba%d1%80%d0%b8%d0%bf%d1%82%d1%8b" class="menu"><li id="menu-item-9615" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9615"><a href="http://dedushka.org/tag/callme">Обратный звонок</a></li>
+<li id="menu-item-9616" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9616"><a href="http://dedushka.org/tag/buyme">Покупка за 1 клик</a></li>
+<li id="menu-item-9617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9617"><a href="http://dedushka.org/tag/bukvus">Проверка орфографии</a></li>
+<li id="menu-item-9618" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9618"><a href="http://dedushka.org/tag/quickbox">Просмотр фото</a></li>
+</ul></div></li>
+					</div>
+					<div class="col-sm-4">
+						<li id="nav_menu-4" class="widget widget_nav_menu"><h2 class="widgettitle">Верстка и код</h2>
+<div class="menu-%d1%83%d1%80%d0%be%d0%ba%d0%b8-container"><ul id="menu-%d1%83%d1%80%d0%be%d0%ba%d0%b8" class="menu"><li id="menu-item-9619" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9619"><a href="http://dedushka.org/tag/css">CSS</a></li>
+<li id="menu-item-9620" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9620"><a href="http://dedushka.org/tag/sass">Sass</a></li>
+<li id="menu-item-9621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9621"><a href="http://dedushka.org/tag/html">HTML</a></li>
+<li id="menu-item-9622" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9622"><a href="http://dedushka.org/tag/js">JavaScript</a></li>
+<li id="menu-item-9623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9623"><a href="http://dedushka.org/tag/verstka">Верстка сайтов</a></li>
+<li id="menu-item-9624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9624"><a href="http://dedushka.org/tag/bootstrap">Bootstrap</a></li>
+</ul></div></li>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="fb-page" data-href="https://www.facebook.com/ntokarr" data-tabs="timeline" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="http://fb.com/ntokarr"><a href="http://fb.com/ntokarr">Dedushka.org</a></blockquote></div></div>
+					</div>
+					<div class="col-md-6">
+						<a class="twitter-timeline" href="https://twitter.com/dedushkaa" data-widget-id="678182814827835393">@dedushkaa</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row hidden-sm hidden-xs">
+			<div class="col-xs-1">
+				<div class="logo">Д</div>
+			</div>
+			<div class="col-xs-5">
+				<p>© 2015—2008. Друзья, я вкладываю душу и время в свой блог уже 7 
+лет и у меня к вам человеческая просьба: не воруйте контент и скрипты. 
+Спасибо! <a href="mailto:a@dedushka.org">a@dedushka.org</a></p>
+				<p class="small">Нашли опечатку? <a href="http://dedushka.org/tag/bukvus">Bukvus</a>: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.</p>
+			</div>
+			<div class="col-xs-6">
+				<ul class="social list-inline">
+					<li class="rss"><a href="http://feeds.feedburner.com/dedushka-org"><i data-icon="e"></i></a></li>
+					<li class="linkedin"><a href="http://linkedin.com/in/nazartokar"><i data-icon="a"></i></a></li>
+					<li class="gplus"><a href="http://plus.google.com/111127214491220322254" rel="author"><i data-icon="c"></i></a></li>
+					<li class="fb"><a href="http://fb.com/ntokarr"><i data-icon="b"></i></a></li>
+					<li class="twitter"><a href="http://twitter.com/dedushkaa"><i data-icon="d"></i></a></li>
+					<li class="vk"><a href="http://vk.com/dedushka_org"><i data-icon="f"></i></a></li>
+					<li class="mail"><a href="#mail" data-toggle="modal" data-target="#mailSubscribe"><i class="glyphicon glyphicon-envelope"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- get link to download callme -->
+
+<div class="modal fade getscript" id="getScript" role="dialog" aria-labelledby="" aria-hidden="false" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+				<span aria-hidden="true">×</span>
+				<span class="sr-only">Закрыть</span></button>
+				<h4 class="modal-title" id="">Получите свою копию скрипта бесплатно</h4>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="form-group">
+					<label for="getscript_mail" class="col-sm-5 control-label">Куда отправить скрипт?</label>
+					<div class="col-sm-7">
+						<input name="" class="email form-control" placeholder="Адрес почты" type="email">
+						<p class="small">Я не рассылаю спам. Пусть познают горечь бытия те, кто рассылает</p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="getscript_mail" class="col-sm-5 control-label">Адрес вашего сайта</label>
+					<div class="col-sm-7">
+						<input name="" class="url form-control" placeholder="Адрес сайта" type="text">
+						<p class="small">Укажите адрес сайта, на котором вы будете использовать этот скрипт</p>
+					</div>
+				</div>
+
+				<div class="help_foot"><p>При возникновении вопросов читайте комментарии в блоге и <a href="http://qbx.me/" target="_blank">форум</a>. Ответы на 99% ваших вопросов УЖЕ ЕСТЬ в блоге и на форуме, пользуйтесь поиском.</p>
+				<p>Я могу раз в месяц прислать письмо с интересными постами из 
+блога. Не чаще и ничего другого. При вводе почты вы соглашаетесь с этим.</p>
+				<p>Свежие посты читайте в <a href="http://twitter.com/dedushkaa" target="_blank"><i data-icon="d"></i> твиттере</a>.</p></div>
+
+			</div>
+
+			<div class="modal-body inf small">
+				<div class="alert"></div>
+			</div>
+
+			<div class="modal-footer text-center">
+				<button type="submit" class="btn btn-success sbmt">Получить скрипт</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- // get link to download callme -->
+
+<div class="modal fade" id="mailSubscribe" role="dialog" aria-labelledby="" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Закрыть</span>
+				</button>
+				<h4 class="modal-title" id="">Подписка на обновления</h4>
+			</div>
+			<form action="https://feedburner.google.com/fb/a/mailverify" class="form-horizontal" role="form" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=Dedushka-org', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+				<input value="http://feeds.feedburner.com/~e?ffid=2369354" name="url" type="hidden">
+				<input value="Dedushka.org" name="title" type="hidden">
+    		<input value="Dedushka-org" name="uri" type="hidden">
+				<input name="loc" value="ru_RU" type="hidden">
+				<div class="modal-body">
+					<p>Подпишитесь и получайте обновления блога на вашу электропочту как только они появляются здесь. </p>
+					<p>Если вы не любите соцсети и RSS, но вам интересно меня читать, читайте в почте. Это самый удобный вариант.</p>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-4 control-label">Адрес e-mail</label>
+						<div class="col-sm-8">
+							<input name="email" class="form-control" id="email" placeholder="Адрес почты" type="email">
+							<p class="help-block">Никакого спама или рекламы, только обновления блога.</p>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer text-center">
+					<button type="submit" class="btn btn-success">Подписаться сейчас</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+<div style="    text-align: left;" data-lang="ru" data-url="http://dedushka.org/uroki/8353.html" data-background-alpha="0.0" data-buttons-color="#ffffff" data-counter-background-color="#ffffff" data-share-counter-size="11" data-top-button="true" data-share-counter-type="common" data-share-style="13" data-mode="share" data-like-text-enable="false" data-hover-effect="scale" data-mobile-view="true" data-icon-color="#ffffff" data-orientation="fixed-left" data-text-color="#000000" data-share-shape="round-rectangle" data-sn-ids="tw.fb.vk.gt.gp.ok.em." data-share-size="30" data-background-color="#ffffff" data-preview-mobile="false" data-mobile-sn-ids="fb.gt.vk.tw.wh.vb." data-pid="cmsdedushkaorg" data-counter-background-alpha="1.0" data-following-enable="false" data-exclude-show-more="true" data-selection-enable="false" class="uptolike-buttons"></div>
+	<div style="display:none">
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"\u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c","visibility_hide":"\u0441\u043a\u0440\u044b\u0442\u044c","visibility_hide_by_default":"1","width":"Auto"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/front.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/dedushka.org\/wp-admin\/admin-ajax.php","post_id":"8353"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/postviews-cache.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery_006.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/lazy-load.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/jquery_004.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/wp-embed.js"></script>
+<script type="text/javascript" src="%D0%A3%D1%80%D0%BE%D0%BA%D0%B8%20%D0%BF%D0%BE%20Bootstrap.%20%D0%A3%D1%80%D0%BE%D0%BA%20%E2%84%9612%20%20JS%20collapse,%20%D1%81%D0%BF%D0%BE%D0%B9%D0%BB%D0%B5%D1%80%D1%8B,%20%D1%81%D0%B2%D0%BE%D1%80%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%20%C2%BB%20Dedushka.org_files/e-201611.js" async="" defer="defer"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.9.4',blog:'28396701',post:'8353',tz:'3',srv:'dedushka.org'} ]);
+	_stq.push([ 'clickTrackerInit', '28396701', '8353' ]);
+</script>
+<div style="display: none;" class="tag" id="upprev_box"><h6>Подробнее в <a href="http://dedushka.org/tag/bootstrap" rel="Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков">bootstrap</a>, <a href="http://dedushka.org/tag/bootstrap-js" rel="Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков">bootstrap.js</a></h6><div class="upprev_excerpt"><h5><a href="http://dedushka.org/uroki/8169.html" rel="Уроки по Bootstrap. Урок №12: JS collapse, спойлеры, сворачивание блоков">Уроки по Bootstrap. Урок №11: выпадающие меню и списки</a></h5><p>Bootstrap
+ позволяет быстро создавать выпадающие меню при помощи ненумерованного 
+списка, 10 минут времени и нескольких классов. Заходите и расскажу, как 
+это делается.</p></div><a id="upprev_close" href="#" rel="close">Закрыть</a></div>
+</body></html>

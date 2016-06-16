@@ -1,0 +1,49 @@
+@echo ################################################################################
+@echo # Почтовый адрес для вопросов и предложений e-mail:s28izh@gmail.com            #
+@echo ################################################################################
+@echo Запускаем программу восстановления флешки.
+@goto lable1
+:lable2
+cls
+@echo ОШИБКА: Указано недопустимое название диска. Пожалйста, повторите попытку.
+@goto lable1
+:lable3
+cls
+@echo ОШИБКА: Указанный диск не существует. Пожалйста, повторите попытку.
+@goto lable1
+:lable1
+@echo Существующие диски в системе:
+@fsutil fsinfo drives
+@set /p disk_flash="Введите букву USB диска: "
+cd /D %disk_flash%:
+if %disk_flash%==C goto lable2
+if %disk_flash%==D goto lable2
+if %disk_flash%==c goto lable2
+if %disk_flash%==d goto lable2
+if %disk_flash%==C: goto lable2
+if %disk_flash%==D: goto lable2
+if %disk_flash%==c: goto lable2
+if %disk_flash%==d: goto lable2
+if %disk_flash%==C:\ goto lable2
+if %disk_flash%==D:\ goto lable2
+if %disk_flash%==c:\ goto lable2
+if %disk_flash%==d:\ goto lable2
+if %errorlevel%==1 goto lable3
+cd /D %disk_flash%:
+cls
+@echo Снять атрибуты с файлов на USB?
+@pause
+attrib -R -A -S -H /D /S
+@echo Удалить лишние ярлык с USB?
+@pause
+del *.lnk /q /f
+@echo Очистить автозагрузку на USB?
+@pause
+attrib -s -h -r autorun.*
+del autorun.* /F
+@echo Очистить корзину на USB?
+@pause
+rd RECYCLER /q /s
+@echo Очистка USB завершена, нажмите любую клавишу для выхода.
+@pause
+explorer.exe %disk_flash%:
