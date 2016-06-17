@@ -1,0 +1,9 @@
+#/bacs_mdl/nbproject/private/
+
+# сначала все в игнор
+*/
+
+# исключить из игнора
+!/bacs_mdl/README.md
+!/bacs_mdl/bilet/*
+!/bacs_mdl/site/mod/bacs/*
