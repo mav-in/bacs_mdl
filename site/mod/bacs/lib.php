@@ -18,9 +18,9 @@ defined('MOODLE_INTERNAL') || die();
  * @return bool|int
  */
 function bacs_add_instance($bacs) {
-  global $DB;
+    global $DB;
 
-  return $DB->insert_record("bacs", $bacs);
+    return $DB->insert_record("bacs", $bacs);
 }
 
 /**
@@ -33,11 +33,11 @@ function bacs_add_instance($bacs) {
  * @return bool
  */
 function bacs_update_instance($bacs) {
-  global $DB;
+    global $DB;
 
-  $bacs->id = $bacs->instance;
+    $bacs->id = $bacs->instance;
 
-  return $DB->update_record("bacs", $bacs);
+    return $DB->update_record("bacs", $bacs);
 }
 
 /**
@@ -52,22 +52,20 @@ function bacs_update_instance($bacs) {
 function bacs_delete_instance($id) {
   global $DB;
 
-  if (!$bacs = $DB->get_record("bacs", array("id" => $id)))
+    if (!$bacs = $DB->get_record("bacs", array("id" => $id)))
     {
-    return false;
+        return false;
     }
 
-  $result = true;
+    $result = true;
 
-  if (!$DB->delete_records("bacs", array("id" => $bacs->id)))
+    if (!$DB->delete_records("bacs", array("id" => $bacs->id)))
     {
-    $result = false;
+        $result = false;
     }
-
-  return $result;
+    return $result;
 }
 
 function bacs_cron() {
-
-  return true;
+    return true;
 }

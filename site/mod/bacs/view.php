@@ -6,6 +6,8 @@
  * @subpackage bacs
  */
 
+// HEADER START BOOTSTRAP
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 
@@ -35,6 +37,9 @@ $context = context_module::instance($cm->id);
 
 $PAGE->set_url('/mod/bacs/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($bacs->name));
+
+$PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
+
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 // Output starts here
@@ -43,6 +48,8 @@ echo $OUTPUT->heading($bacs->name);
 $PAGE->navbar->ignore_active();
 $PAGE->navbar->add('preview', new moodle_url('/a/link/if/you/want/one.php'));
 $PAGE->navbar->add('name of thing', new moodle_url('/a/link/if/you/want/one.php'));
+
+// HEADER END BOOTSTRAP
 
 if (has_capability('mod/bacs:addinstance',$context)) $student = false;
 else $student = true;
@@ -67,8 +74,6 @@ if (!$student)
         echo $OUTPUT->box("Вы ещё не добавили задачи в контест. Это можно сделать в режиме редактрирования");
     }
     else echo $OUTPUT->box("Добавьте задачи");
-    
-    
 }
 
 echo $OUTPUT->footer();

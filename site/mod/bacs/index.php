@@ -6,6 +6,8 @@
  * @subpackage bacs
  */
 
+// HEADER START BOOTSTRAP
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 
@@ -29,11 +31,11 @@ if ($id) {
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-//add_to_log($course->id, 'bacs', 'view', "view.php?id={$cm->id}", $bacs->name, $cm->id);
+//add_to_log($course->id, 'bacs', 'view', "index.php?id={$cm->id}", $bacs->name, $cm->id);
 
 /// Print the page header
 
-$PAGE->set_url('/mod/bacs/task.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/bacs/index.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($bacs->name));
 
 $PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
@@ -47,13 +49,14 @@ $PAGE->navbar->ignore_active();
 $PAGE->navbar->add('preview', new moodle_url('/a/link/if/you/want/one.php'));
 $PAGE->navbar->add('name of thing', new moodle_url('/a/link/if/you/want/one.php'));
 
+// HEADER END BOOTSTRAP
+
 if (has_capability('mod/bacs:addinstance',$context)) $student = false;
 else $student = true;
 if (time()<$bacs->starttime) $contest_has_started = false;
 else $contest_has_started = true;
-//if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
-//else
-$contest_has_tasks = false;
+if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
+else $contest_has_tasks = false;
 
 echo html_writer::script('', $CFG->wwwroot.'/mod/bacs/bootstrap/js/bootstrap.min.js');
 echo html_writer::script('', $CFG->wwwroot.'/mod/bacs/bootstrap/js/npm.js');

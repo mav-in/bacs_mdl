@@ -6,12 +6,15 @@
  * @subpackage bacs
  */
 
+// HEADER START BOOTSTRAP
+
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 
 $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
 $b  = optional_param('b', 0, PARAM_INT);  // bacs instance ID - it should be named as the first character of the module
 $edit  = optional_param('edit', 0, PARAM_BOOL); // Edit contest mode
+
 
 if ($id) {
     $cm         = get_coursemodule_from_id('bacs', $id, 0, false, MUST_EXIST);
@@ -28,12 +31,15 @@ if ($id) {
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-//add_to_log($course->id, 'bacs', 'monitor', "monitor.php?id={$cm->id}", $bacs->name, $cm->id);
+//add_to_log($course->id, 'bacs', 'view', "task.php?id={$cm->id}", $bacs->name, $cm->id);
 
 /// Print the page header
 
 $PAGE->set_url('/mod/bacs/task.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($bacs->name));
+
+$PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
+
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 // Output starts here
@@ -42,6 +48,8 @@ echo $OUTPUT->heading($bacs->name);
 $PAGE->navbar->ignore_active();
 $PAGE->navbar->add('preview', new moodle_url('/a/link/if/you/want/one.php'));
 $PAGE->navbar->add('name of thing', new moodle_url('/a/link/if/you/want/one.php'));
+
+// HEADER END BOOTSTRAP
 
 echo (int)rand(100, 999);
 
