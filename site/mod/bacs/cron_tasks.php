@@ -52,7 +52,7 @@ if (has_capability('mod/bacs:addinstance',$context)) $student = false;
 else $student = true;
 if (time()<$bacs->starttime) $contest_has_started = false;
 else $contest_has_started = true;
-if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
+if ($DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
 else $contest_has_tasks = false;
 
 if (!$student)
@@ -64,12 +64,6 @@ if (!$student)
     try{
         $res = $apiClient->getProblems();
         foreach($res as $mes){
-            print_r($mes->getId());
-            print_r($mes->getInfo());
-            print_r($mes->getTimeLimitMillis());
-            print_r($mes->getMemoryLimitBytes());
-
-            //id	task_id	name	time_limit_millis	memory_limit_bytes	count_tests	statement_url	revision
             $record = new stdClass();
             $record->task_id         = $mes->getId();
             $record->name         = $mes->getInfo()["Name"];

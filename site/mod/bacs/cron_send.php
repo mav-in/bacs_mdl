@@ -58,7 +58,7 @@ if (time()<$bacs->starttime)
 else
     $contest_has_started = true;
 
-if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id)))
+if ($DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id)))
     $contest_has_tasks = true;
 else
     $contest_has_tasks = false;

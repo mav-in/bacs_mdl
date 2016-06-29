@@ -52,7 +52,7 @@ if (has_capability('mod/bacs:addinstance',$context)) $student = false;
 else $student = true;
 if (time()<$bacs->starttime) $contest_has_started = false;
 else $contest_has_started = true;
-if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
+if ($DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
 else $contest_has_tasks = false;
 
 
