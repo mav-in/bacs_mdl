@@ -1,11 +1,11 @@
 #/bacs_mdl/nbproject/private/
 
-# сначала все в игнор
+# block all
 */
 
-# исключить из игнора
-!/bacs_mdl/README.md
-!/bacs_mdl/bilet/*
-!/bacs_mdl/site/mod/bacs/*
+# exept
+!/README.md
+!/bilet/*
+!/site/mod/bacs/*
 
 .idea
