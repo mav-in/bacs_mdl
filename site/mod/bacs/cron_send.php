@@ -148,24 +148,31 @@ foreach($task_ids as $mes){
 // Ограничить выборку
 // TODO убрать, сделать по массиву id
 if ($apiClient->Ping()) {
-    $cron_ids = $DB->get_records('bacs_cron', array('status_id' => 1), 'timestamp ASC', 'id, submit_id');
+    $cron_ids = $DB->get_records('bacs_cron', array('status_id' => 1), 'timestamp ASC', 'id, submit_id, error');
     try{
         // Формирование пакета
         $all = array();
+        $err = array();
         foreach($cron_ids as $mes){
             $result = $DB->get_record('bacs_submits', array('id' => $mes->submit_id), 'task_id, source, lang_id', IGNORE_MISSING);
             $result_task = $DB->get_record('bacs_tasks', array('id' => $result->task_id), 'task_id', IGNORE_MISSING);
             $all[] = new Bacs\model\Submit($result_task->task_id, $result->source, $result->lang_id);
+            $err[] = $mes->error;
         }
         $res = $apiClient->sendSubmitAll($all);
         $i = 0;
         foreach($cron_ids as $mes){
             $record = new stdClass();
             $record->id = $mes->id;
-            $record->sync_submit_id = $res[$i++];
-            $record->status_id = 2;
+            if(isset($res[$i])) {
+                $record->sync_submit_id = $res[$i];
+                $record->status_id = 2;
+            } else {
+                $record->error = ++$err[$i];
+            }
             $record->timestamp = time();
             $lastinsertid = $DB->update_record('bacs_cron', $record);        
+            ++$i;
         }
     }catch(Exception $e){
         print_r($e->getMessage());

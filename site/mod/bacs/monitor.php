@@ -60,7 +60,7 @@ $results = $DB->get_records('bacs', array('upsolving' => $bacs->id));
 $table = new html_table();
 $table->head = array('Contest', 'Starttime', 'Stoptime');
 foreach($results as $result) {
-	$table->data[] = array(format_string($result->name),format_string($result->starttime),format_string($result->endtime));
+    $table->data[] = array(format_string($result->name), format_string($result->starttime), format_string($result->endtime));
 };
 echo html_writer::table($table);
 
@@ -71,13 +71,13 @@ $now = time();
 //else
 //	$id = (int)$_GET['c_id'];
 	
-$result = $DB->get_record_select('bacs', "starttime < $now AND id = $id", array($params=null),'id, name');
+$result = $DB->get_record_select('bacs', "starttime < $now AND id = $id", array($params = null), 'id, name');
 //!!!Костыль: проверить на корректость проверки объекта
 if (!is_object($result)) {
     if ($DB->count_records('bacs', array('id' => $id)) == 0)
-        die('Not found!/Контест не найден');
+        die('Not found! / Контест не найден');
     else
-        die('Contest has not started/Контест ещё не начался.');
+        die('Contest has not started / Контест ещё не начался.');
 }
 $cid = $result->id;
 $cname = $result->name;
@@ -115,21 +115,27 @@ echo "Time: <b>$runtime</b> of <b>$tottime</b>. Status: <b>$statustext</b>.<br>"
 //SELECT MIN(`submit_time`), `user_id`, `task_id` FROM `mdl_bacs_submits` WHERE `contest_id` = 2 GROUP BY `task_id` HAVING MIN(`submit_time`)
 
 //ЗАГОЛОВОК
-$results = $DB->get_records('bacs_tasks_to_contests',array('contest_id' => $bacs->id),'task_order');
+$results = $DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id), 'task_order ASC', 'task_id, contest_id, task_order');
 $table = new html_table();
 $header = array();
 $header[] = 'N';
 $header[] = 'User name';
+$aid = 'A';
 foreach($results as $result) {
     //!!!Костыль: нет проверки переполнения
+    /*
     if  ($result->task_order < 26) {
-        $header[] = format_string(chr(65 + $result->task_order));
+        $header[] = format_string(chr(64 + $result->task_order));
     }
     else {
-        $header[] = format_string(chr(65 + ($result->task_order % 10)) + (int)($result->task_order/10));
+        $header[] = format_string(chr(64 + ($result->task_order % 10)) + (int)($result->task_order / 10));
     }
+    */
+    $header[] = $aid;
+    //$header[] = format_string($result->task_id);
     //Собираем литеры контеста
     $lid[$result->task_id . " " . $result->contest_id] = $result->task_order;
+    $aid=chr(ord($aid)+1);
 };
 $header[] = '+';
 $header[] = 'Time';
@@ -163,33 +169,39 @@ function formtime($sec)
     $hr = (int)($sec / 3600);
     $min = (int)($sec / 60) % 60;
     if ($min < 10)
-            $min = '0'.$min;
+        $min = '0'.$min;
 
     return ($hr.':'.$min);
 }
+
 //Заметка, отрицательные отправки по контесту не проверили
-$results = $DB->get_records_select('bacs_submits', "submit_time <= $endtime AND contest_id = $id", array($params=null),'id, user_id, contest_id, task_id, lang_id, source, submit_time, result_id, test_num_failed, max_time_used, max_memory_used, info');
-//Ищем сколько фэйлов сделал пользователь и когда произошел аксепт по каждой задачке
+$results = $DB->get_records_select('bacs_submits', "submit_time <= $endtime AND contest_id = $id", array($params = null), 'id, user_id, contest_id, task_id, lang_id, source, submit_time, result_id, test_num_failed, max_time_used, max_memory_used, info');
+//Ищем сколько фэйлов сделал пользователь, и когда произошел аксепт по каждой задачке
 unset($data);
 foreach($results as $result) {
+    //$res = $DB->get_record_select('bacs_tasks', "id = $result->task_id", array($params = null), 'task_id');
     $cur_uid = format_string($result->user_id); //Получаем id пользователя
-    $lit = $lid[$result->task_id." ".$result->contest_id]; //Литера
-    $rec = $data[$cur_uid][$lit]; //Собираем статистику по связке пользователь+[задача+контест]
+    $lit = $lid[$result->task_id." ".$result->contest_id];
+    //$lit = isset($lid[$result->task_id." ".$result->contest_id]) ? $lid[$result->task_id." ".$result->contest_id] : ''; //Литера
+    $rec = $data[$cur_uid][$lit];
+    //$rec = isset($data[$cur_uid][$lit]) ? $data[$cur_uid][$lit] : ''; //Собираем статистику по связке пользователь+[задача+контест]
     if (!$rec) { //Если первый проход
         $rec = new MyRec();
         $rec->fault = 0; //Ошибок
         $rec->ac = 0; //Правильных
         $rec->ac_time = 0; //Время правильного
     }
-    if ($rec->ac)//Если правильно решена выходим
+    if ($rec->ac)//Если в предыдущеем проходе решение принято - пропускаем цикл
         continue;
-    if (format_string($result->result_id) == 0) { //Сохраняем данные по принятой задачке
+    if (format_string($result->result_id) == 13) { //Сохраняем данные по принятой задачке
         $rec->ac = 1;
         $rec->ac_time = $result->submit_time - $bacs->starttime;
     }
     else {
-        ++$rec->fault; //Считаем кол-во фолов
-        $rec->submit_time = $result->submit_time - $bacs->starttime;
+        if (format_string($result->result_id) != 0) {
+            ++$rec->fault; //Считаем кол-во фолов
+            $rec->submit_time = $result->submit_time - $bacs->starttime;
+        }
     }
     $data[$cur_uid][$lit] = $rec; //Возвращаем полученные данные
 }
@@ -210,10 +222,10 @@ if (isset($data)) {
                 $u->pen += (int)($rec->ac_time / 60);
                 $u->pen += $rec->fault * 20;
                 $cstat[0][$lit] = ++$сstat[0][$lit];
-            } else {
-                $cstat[1][$lit] = $сstat[1][$lit] + $rec->fault;
             }
+            $cstat[1][$lit] = $сstat[1][$lit] + $rec->fault;
         }
+
         $user[$usern] = $u;
         ++$usern;
     }
@@ -244,14 +256,13 @@ $aligns[] = "left";
 for ($i = 0; $i < $usern; ++$i) {
     $place[$i] = $i + 1;
     if ($i && ($user[$i - 1]->solved == $user[$i]->solved) && ($user[$i - 1]->pen == $user[$i]->pen)) $place[$i] = $place[$i - 1];
-/**/
     $result = array($place[$i], $user[$i]->name);
     $cells = array();
     $cells[] = $place[$i];
     $cells[] = $user[$i]->name;
     $uid = $user[$i]->id;
     foreach ($lid as $tmp => $lit) {
-        $rec = $data[$uid][$lit];
+        $rec = isset($data[$uid][$lit]) ? $data[$uid][$lit] : '';
         if (!$rec) $msg = '&nbsp;';
         else {
             if ($rec->ac) {
@@ -285,6 +296,7 @@ for ($i = 0; $i < $usern; ++$i) {
 }
 $aligns[] = "center";
 $aligns[] = "center";
+
 $table->data[] = array('','<font color=green>Зачтено:</font>',$cstat[0][1],$cstat[0][2],$cstat[0][3],'','');
 $table->data[] = array('','<font color=red>Попыток:</font>',$cstat[1][1],$cstat[1][2],$cstat[1][3],'','</font>');
 $table->data[] = array('','Всего посылок:',$cstat[0][1]+$cstat[1][1],$cstat[0][2]+$cstat[1][2],$cstat[0][3]+$cstat[1][3],'','');
@@ -292,35 +304,54 @@ $table->data[] = array('','Всего посылок:',$cstat[0][1]+$cstat[1][1]
 echo html_writer::table($table);
 
 ///---
-$results = $DB->get_records_select('bacs_langs','');
+//$results = $DB->get_records_select('bacs_langs','');
 
-$LANGUAGES = array('C++'=>'+', 'PASCAL'=>'P', 'C'=>'C', 'Java'=>'J', 'Python 3'=>'T');
+//$LANGUAGES = array('C++'=>'+', 'PASCAL'=>'P', 'C'=>'C', 'Java'=>'J', 'Python 3'=>'T');
+$res = $DB->get_records('bacs_langs', null, null, 'id, name');
+
 //function bacs_print_task_send_form($bacs,$taskId){
-    global $LANGUAGES;
+    //global $LANGUAGES;
     $task_select='';
     $lang_select='';
-    foreach ($LANGUAGES as $lang=>$slang){
-        $lang_select.="<option value='$slang'>$lang\n";
+    foreach ($res as $mes){
+        $lang_select .= "<option value='$mes->id'>$mes->name\n";
     }
     //foreach($results as $result) {
     //	$lang_select.="<option value='format_string($result->langs_id)'>format_string($result->$str)\n";
     //}
     //$task_ids = $DB->get_records("bacs_m2m", "contest_id", $bacs->contest_id,'task_order,task_id');
-    $task_ids = $DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id), 'task_order, task_id');
+    //$task_ids = $DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id), 'task_order, task_id');
+    $task_ids = $DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id), 'task_order ASC', 'task_id, contest_id, task_order');
     $aid='A';
     foreach ($task_ids as $task_id){
-        $task = $DB->get_record('bacs_tasks',array('task_id' => task_id));
-        if ($task->task_id==$taskId)
-        $sel='selected';
+        $task = $DB->get_record('bacs_tasks', array('id' => $task_id->task_id), 'name', IGNORE_MISSING);
+        /*
+        if ($task->task_id == $taskId)
+            $sel='selected';
         else
-        $sel='';
-        $task_select.="<option value='$task->task_id' $sel>$aid. $task->name\n";
+        */
+            $sel='';
+        $task_select.="<option value='$task_id->task_id' $sel>$aid. $task->name\n";
         $aid=chr(ord($aid)+1);
     }
 
     $task_answer='';
-    if ($_GET["answer"]!="")
-    $task_answer=stripslashes(stripslashes($_GET["answer"]));
+    //if ($_GET["answer"] != "")
+    //    $task_answer = stripslashes(stripslashes($_GET["answer"]));
+
+    if ($_POST["source"] != "") {
+        $task_answer = stripslashes(stripslashes($_POST["source"]));
+        $record = new stdClass();
+        $record->user_id = 1;
+        $record->contest_id = 1;
+        $record->task_id = $_POST["task_id"];
+        $record->lang_id = $_POST["lang"];
+        $record->source = $_POST["source"];
+        $record->result_id = 0;
+        $record->submit_time = time();
+        $lastinsertid = $DB->insert_record('bacs_submits', $record, false);
+    }
+    //bacs_submit($bacs,$_POST);
     print '<form enctype="multipart/form-data" method="POST">
     <table class="answer_table">
     <tr>
@@ -334,7 +365,7 @@ $LANGUAGES = array('C++'=>'+', 'PASCAL'=>'P', 'C'=>'C', 'Java'=>'J', 'Python 3'=
 
     </tr>
     <tr>
-    <td colspan=2 align="center"><input type=submit value="send answer"></td>
+    <td colspan=2 align="center"><input type="submit" value="send answer"></td>
     </tr>
     </table>
     </form>';
