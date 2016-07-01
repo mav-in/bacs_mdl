@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--TODO: Проверить ключи и id таблиц-->
-<XMLDB PATH="mod/bacs/db" VERSION="20160629" COMMENT="XMLDB file for Moodle mod/bacs"
+<XMLDB PATH="mod/bacs/db" VERSION="20160701" COMMENT="XMLDB file for Moodle mod/bacs"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -38,7 +38,7 @@
     </TABLE>
     <TABLE NAME="bacs_tasks_to_contests" COMMENT="Таблица содержит список задач контеста и их порядок в контесте">
       <FIELDS>
-        <FIELD NAME="task_id" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
         <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор контеста"/>
         <FIELD NAME="task_order" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Порядок задач в контесте"/>
       </FIELDS>
@@ -57,9 +57,9 @@
         <FIELD NAME="submit_time" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Время получения решения"/>
         <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Результат проверки"/>
         <FIELD NAME="sync_submit_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Идентификатор посылки в BACS"/>
-        <FIELD NAME="test_num_failed" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Номер проваленного теста"/>
-        <FIELD NAME="max_time_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="true" SEQUENCE="false" COMMENT="Максимальное использованное время"/>
-        <FIELD NAME="max_memory_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="true" SEQUENCE="false" COMMENT="Максимальная использованная память"/>
+        <FIELD NAME="test_num_failed" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Номер проваленного теста"/>
+        <FIELD NAME="max_time_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальное использованное время"/>
+        <FIELD NAME="max_memory_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальная использованная память"/>
         <FIELD NAME="info" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Сообщение компилятора"/>
         <!--<FIELD NAME="revision" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Ревизия задачи"/>-->
       </FIELDS>
@@ -88,7 +88,7 @@
     <!--TODO-->
     <TABLE NAME="bacs_langs" COMMENT="Языки компиляторов.">
       <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор компилятора"/>
+        <FIELD NAME="id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор компилятора"/>
         <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="КОроткое название компилятора"/>
         <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Описание компилятора"/>
         <FIELD NAME="time_limit_millis" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное время на компиляцию"/>
