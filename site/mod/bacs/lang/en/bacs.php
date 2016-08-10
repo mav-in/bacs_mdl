@@ -23,3 +23,8 @@ $string['modulename_help'] = 'bacs is the plugin that do smth. Sure, it\'s bette
 $string['modulenameplural'] = 'bacs';
 $string['pluginadministration'] = 'bacs settings';
 $string['pluginname'] = 'BACS Contest';
+//Task
+$string['task'] = 'Задача';
+$string['prog lang'] = 'Язык программирования';
+$string['source'] = 'Текст решения';
+$string['load from file'] = 'Загрузить из файла';

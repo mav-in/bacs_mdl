@@ -23,3 +23,8 @@ $string['modulename_help'] = 'Плагин создает контест.';
 $string['modulenameplural'] = 'Контесты';
 $string['pluginadministration'] = 'Настройки плагина контест';
 $string['pluginname'] = 'BACS Контест';
+//Task
+$string['task'] = 'Задача';
+$string['prog lang'] = 'Язык программирования';
+$string['source'] = 'Текст решения';
+$string['load from file'] = 'Загрузить из файла';
