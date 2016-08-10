@@ -12,4 +12,6 @@
 !/site/mod/bacs
 !/site/mod/bacs/*
 
+/site/mod/bacs/api*
+
 .idea
