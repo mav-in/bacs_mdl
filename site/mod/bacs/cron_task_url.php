@@ -31,11 +31,11 @@ if ($id) {
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-//add_to_log($course->id, 'bacs', 'view', "cron.php?id={$cm->id}", $bacs->name, $cm->id);
+//add_to_log($course->id, 'bacs', 'view', "cron_langs.php?id={$cm->id}", $bacs->name, $cm->id);
 
 /// Print the page header
 
-$PAGE->set_url('/mod/bacs/cron.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/bacs/cron_task_url.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($bacs->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
@@ -55,60 +55,27 @@ else $contest_has_started = true;
 if ($DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
 else $contest_has_tasks = false;
 
-
-
 include './api/Client.php';
-//require_once(dirname(__FILE__).'/lib.php');
+
 $apiClient = new Bacs\Client();
 
-try{
-    $res = $apiClient->getProblems();
-    foreach($res as $mes){
-        print_r($mes->getId());
-        print_r($mes->getInfo());
-        print_r($mes->getTimeLimitMillis());
-        print_r($mes->getMemoryLimitBytes());
-        
-        //id	task_id	name	time_limit_millis	memory_limit_bytes	count_tests	statement_url	revision
-        $record = new stdClass();
-        $record->task_id         = $mes->getId();
-        $record->name         = $mes->getInfo()["Name"];
-        $record->time_limit_millis = $mes->getTimeLimitMillis();
-        $record->memory_limit_bytes = $mes->getMemoryLimitBytes();
-        $record->count_tests = null;
-        $record->statement_url = null;
-        $record->revision = null;
-
-        $lastinsertid = $DB->insert_record('bacs_tasks', $record, false);
-    }
-}catch(Exception $e){
-    print_r($e->getMessage());
-}
-
-class cron {
-    function get_tasks() {
-        
-    }
-}
-
 if (!$student)
-{
-    echo $OUTPUT->box_start();
-    echo '<strong>Время начала контеста:</strong> ';
-    echo userdate($bacs->starttime);
-    echo "<br>";
-    echo '<strong>Время окончания контеста:</strong> ';
-    echo userdate($bacs->endtime);
-    if ($edit) echo "<br><br> Вы можете изменить время контеста, зайдя в его настройки.";
-    echo $OUTPUT->box_end();
-    
-    if (!$edit && !$contest_has_tasks)
-    {
-        echo $OUTPUT->box("Вы ещё не добавили задачи в контест. Это можно сделать в режиме редактрирования");
+{  
+    if ($apiClient->Ping()) {
+        $results = $DB->get_records('bacs_tasks_to_contests', array('contest_id' => 1), null, 'task_id');
+        foreach($results as $mes){
+            $task_id = $DB->get_record('bacs_tasks', array('id'=>$mes->task_id), 'task_id');
+            try{
+                $result = $apiClient->getStatementUrl($task_id->task_id);
+                $rec = new stdClass();
+                $rec->id = $mes->task_id;
+                $rec->statement_url = $result;
+                $lastinsertid = $DB->update_record_raw('bacs_tasks', $rec);             
+            }catch(Exception $e){
+                print_r($e->getMessage());
+            }
+        }
     }
-    else echo $OUTPUT->box("Добавьте задачи");
-    
-    
 }
 
 echo $OUTPUT->footer();

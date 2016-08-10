@@ -63,7 +63,7 @@ if ($DB->get_records('bacs_tasks_to_contests', array('contest_id' => $bacs->id))
 else
     $contest_has_tasks = false;
 
-include './test_www/BacsApi/Client.php';
+include './api/Client.php';
 
 $apiClient = new Bacs\Client();
 
@@ -71,46 +71,84 @@ $apiClient = new Bacs\Client();
 if ($apiClient->Ping()) {
     $res = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC', 'id, submit_id, sync_submit_id, error');
     $sync_ids = array();
+    $ida = array();
     $ids = array();
     $i = 0;
     foreach($res as $item){
        //$ids[++$i] = (array)$item;
         $sync_ids[] = $item->sync_submit_id;
+        $ida[] =  $item->id;
         $ids[] =  $item->submit_id;
         $err[] =  $item->error;
     }
+    print_r($ida);
     //try{
         if (isset($ids[0])) {
             $res = $apiClient->getResultAll($sync_ids);
             $i = 0;
+            
             foreach($res as $item){
-                print_r($item);
+                //print_r($item);
                 if(!is_null($item->getBuildStatus()) AND !is_null($item->getSystemStatus())) {
                     $transaction = $DB->start_delegated_transaction();
-
+                    
+                    $i = 0;
+                    $tests = $item->getTestGroup();
+                    $max_time_used = 0;
+                    $max_memory_used = 0;
+                    if ($tests) {
+                        $records = array();
+                        foreach ($tests as $rec) {
+                            $record = new stdClass();
+                            $record->submit_id = $ids[$i];
+                            $record->test_id = $rec->getTestId();
+                            $record->status_id = $rec->getStatus();
+                            // TODO Не понимаю, почему не работает без префикса max.
+                            $time_used = $rec->getTimeUsageMillis();
+                            $memory_used = $rec->getMemoryUsageBytes();
+                            if ($time_used > $max_time_used) {
+                                $max_time_used = $time_used;
+                            }
+                            if ($memory_used > $max_memory_used) {
+                                $max_memory_used = $memory_used;
+                            }
+                            $record->max_time_used = $time_used;
+                            $record->max_memory_used = $memory_used;
+                            $records[] = $record;
+                        }
+                        print_r($records);
+                        $lastinsertid = $DB->insert_records('bacs_submits_tests', $records);
+                    }
+                    
                     $rec = new stdClass();
                     $rec->id = $ids[$i];
                     $rec->result_id = $item->getSystemStatus();
                     $rec->info = $item->getBuildOutput();
+                    print_r($rec);
                     $lastinsertid = $DB->update_record_raw('bacs_submits', $rec);             
                     unset($rec);
                     
                     $rec1 = new stdClass();
-                    $rec1->id = $ids[$i];
+                    $rec1->id = $ida[$i];
+                    $rec1->submit_id = $ids[$i];
                     $rec1->status_id = 3;
                     $rec1->timestamp = time();
+                    $record->max_time_used = $max_time_used;
+                    $record->max_memory_used = $max_memory_used;
+                    print_r($rec1);
                     $lastinsertid = $DB->update_record_raw('bacs_cron', $rec1);
                     unset($rec1);
                     
                     $transaction->allow_commit();
                 } else {
                     $rec = new stdClass();
-                    $rec->id = $ids[$i];
+                    $rec1->id = $ida[$i];
+                    $rec1->submit_id = $ids[$i];
                     $rec->error = $err[$i]++;
                     $rec->timestamp = time();
                     $lastinsertid = $DB->update_record_raw('bacs_cron', $rec);                  
                 }
-                $i = $i++;
+                $i = $i + 1;
             }
         }
     //}catch(Exception $e){

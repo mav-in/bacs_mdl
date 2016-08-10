@@ -57,7 +57,7 @@ else $contest_has_tasks = false;
 
 if (!$student)
 {  
-    include './test_www/BacsApi/Client.php';
+    include './api/Client.php';
     //require_once(dirname(__FILE__).'/lib.php');
     $apiClient = new Bacs\Client();
 
