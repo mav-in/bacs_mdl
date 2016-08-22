@@ -69,22 +69,23 @@ $apiClient = new Bacs\Client();
 
 // SQL запрашиваем результаты
 if ($apiClient->Ping()) {
-    $res = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC', 'id, submit_id, sync_submit_id, error');
+    $resdb = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC', 'id, submit_id, sync_submit_id, error');
     $sync_ids = array();
     $ida = array();
     $ids = array();
+    $err = array();
     $i = 0;
-    foreach($res as $item){
+    foreach($resdb as $item){
        //$ids[++$i] = (array)$item;
         $sync_ids[] = $item->sync_submit_id;
-        $ida[] =  $item->id;
-        $ids[] =  $item->submit_id;
-        $err[] =  $item->error;
+        $ida[] = $item->id;
+        $ids[] = $item->submit_id;
+        $err[] = $item->error;
     }
-    print_r($ida);
-    //try{
+    try{
         if (isset($ids[0])) {
             $res = $apiClient->getResultAll($sync_ids);
+            
             $i = 0;
             
             foreach($res as $item){
@@ -92,18 +93,20 @@ if ($apiClient->Ping()) {
                 if(!is_null($item->getBuildStatus()) AND !is_null($item->getSystemStatus())) {
                     $transaction = $DB->start_delegated_transaction();
                     
-                    $i = 0;
                     $tests = $item->getTestGroup();
+                    $points = 0;
                     $max_time_used = 0;
                     $max_memory_used = 0;
                     if ($tests) {
+                        $db_assign = $DB->get_record('bacs_submits', array('id' => $ids[$i]), 'task_id', MUST_EXIST);
+                        $db_points = $DB->get_record('bacs_tasks', array('id' => $db_assign->task_id), 'test_points', MUST_EXIST);
+                        $point = explode(",", $db_points->test_points);
                         $records = array();
                         foreach ($tests as $rec) {
                             $record = new stdClass();
                             $record->submit_id = $ids[$i];
                             $record->test_id = $rec->getTestId();
                             $record->status_id = $rec->getStatus();
-                            // TODO Не понимаю, почему не работает без префикса max.
                             $time_used = $rec->getTimeUsageMillis();
                             $memory_used = $rec->getMemoryUsageBytes();
                             if ($time_used > $max_time_used) {
@@ -112,33 +115,35 @@ if ($apiClient->Ping()) {
                             if ($memory_used > $max_memory_used) {
                                 $max_memory_used = $memory_used;
                             }
-                            $record->max_time_used = $time_used;
-                            $record->max_memory_used = $memory_used;
+                            if ($rec->getStatus() == 0) {
+                                $points += $point[$record->test_id];
+                            }
+                            $record->time_used = $time_used;
+                            $record->memory_used = $memory_used;
                             $records[] = $record;
                         }
-                        print_r($records);
                         $lastinsertid = $DB->insert_records('bacs_submits_tests', $records);
                     }
                     
                     $rec = new stdClass();
                     $rec->id = $ids[$i];
                     $rec->result_id = $item->getSystemStatus();
+                    $rec->points = $points;
                     $rec->info = $item->getBuildOutput();
-                    print_r($rec);
+                    $rec->max_time_used = $max_time_used;
+                    $rec->max_memory_used = $max_memory_used;
                     $lastinsertid = $DB->update_record_raw('bacs_submits', $rec);             
                     unset($rec);
                     
                     $rec1 = new stdClass();
+                    echo($ida[$i]);
                     $rec1->id = $ida[$i];
                     $rec1->submit_id = $ids[$i];
                     $rec1->status_id = 3;
                     $rec1->timestamp = time();
-                    $record->max_time_used = $max_time_used;
-                    $record->max_memory_used = $max_memory_used;
-                    print_r($rec1);
                     $lastinsertid = $DB->update_record_raw('bacs_cron', $rec1);
                     unset($rec1);
-                    
+
                     $transaction->allow_commit();
                 } else {
                     $rec = new stdClass();
@@ -148,12 +153,12 @@ if ($apiClient->Ping()) {
                     $rec->timestamp = time();
                     $lastinsertid = $DB->update_record_raw('bacs_cron', $rec);                  
                 }
-                $i = $i + 1;
+                $i += 1;
             }
         }
-    //}catch(Exception $e){
-    //    print_r($e->getMessage());
-    //}
+    }catch(Exception $e){
+        print_r($e->getMessage());
+    }
 }
     
 // SQL выборка задач на обработку
@@ -197,6 +202,7 @@ if ($apiClient->Ping()) {
             $all[] = new Bacs\model\Submit($result_task->task_id, $result->source, $result->lang_id);
             $err[] = $mes->error;
         }
+        print_r($all);
         $res = $apiClient->sendSubmitAll($all);
         $i = 0;
         foreach($cron_ids as $mes){
