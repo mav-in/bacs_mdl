@@ -65,8 +65,8 @@ if (!$student)
         $res = $apiClient->getAllLanguages();
         foreach($res as $mes){
             $record = new stdClass();
-            $record->langs_id         = $mes->getId();
-            $record->name         = $mes->getInfo()["en-us"];
+            $record->lang_id = $mes->getId();
+            $record->name = $mes->getInfo()["en-us"];
             $record->description = null;
             $record->time_limit_millis = $mes->getTimeLimitMillis();
             $record->memory_limit_bytes = $mes->getMemoryLimitBytes();
