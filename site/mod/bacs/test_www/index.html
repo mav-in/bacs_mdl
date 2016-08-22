@@ -1,285 +1,158 @@
 <!DOCTYPE html>
 <html  dir="ltr" lang="ru" xml:lang="ru">
 <head>
-    <title>Х𢻩</title>
+    <title>Список задач</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!--
-<link rel="stylesheet" type="text/css" href="http://172.16.128.131/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css" />
-<link rel="stylesheet" type="text/css" href="http://172.16.128.131/theme/styles.php?theme=decaf&amp;rev=1454590206&amp;type=all" />
-<link rel="stylesheet" type="text/css" href="http://172.16.128.131/mod/bacs/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="http://172.16.128.131/mod/bacs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://172.16.128.131/mod/bacs/bootstrap/js/npm.js"></script>
--->
-<link rel="stylesheet" type="text/css" href="./bootstrap/css/docs.min.css" />
-<link rel="stylesheet" type="text/css" href="./bootstrap/css/common.css" />
-<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="./bootstrap/js/jquery-2.2.2.js"></script>
-<script type="text/javascript" src="./bootstrap/js/production.js"></script>
-<script type="text/javascript" src="./bootstrap/js/font.js"></script>
-<script type="text/javascript" src="./bootstrap/js/common.js"></script>
-<!--<script type="text/javascript" src="./bootstrap/js/npm.js"></script>-->
-
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/docs.min.css" />
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="./bootstrap/js/jquery-2.2.2.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/production.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/font.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/common.js"></script>
+    <!--<script type="text/javascript" src="./bootstrap/js/npm.js"></script>-->
 </head>
 <body>
 
-
-
 <ul class="nav nav-tabs">
-  <li><a href="monitor.html"><span class="glyphicon glyphicon-stats"></span> Монитор</a></li>
-  <li class="active" ><a href="index.html"><span class="glyphicon glyphicon-th-list"></span> Список задач</a></li>
-  <!--
-  <li class="dropdown">
-    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Статьи <b class="caret"></b></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Windows</a></li>
-      <li><a href="#">Linux</a></li>
-      <li><a href="#">Mac OS</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Другие</a></li>
-    </ul>
-  </li>
-  -->
+    <li><a href="monitor.html"><span class="glyphicon glyphicon-stats"></span> Монитор</a></li>
+    <li class="active" ><a href="index.html"><span class="glyphicon glyphicon-th-list"></span> Список задач</a></li>
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-cog"></span> Настройки<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Монитор</a></li>
+            <li><a href="#">Задачи</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Другие</a></li>
+        </ul>
+    </li>
 </ul>
-<!--
-<div class="container-fluid">
-<div class="bs-component">
-<table class="table table-striped table-hover ">
-  <tr>
-	<th>1</th><th>2</th><th>3</th>
-  </tr>  <tr>
-	<td>1</td><td>2</td><td>3</td>
-  </tr>
-  <tr>
-	<td>1</td><td>2</td><td>3</td>
-  </tr>
-</table>
-</div>
-</div>
--->
-
 
 <div class="panel-group" id="collapse-group">
 <!--Панель 1 #####################################################################################-->
- <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title"><b>
-	 <div class="row">
-	  <div class="col-xs-1 col-lg-1">№</div>
-	  <div class="col-xs-5 col-lg-8">Название задачи</div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Условие</div>
-	  <div class="col-xs-2 col-lg-1">Время</div>
-	  <div class="col-xs-2 col-lg-1">Память</div>
-	 </div></b>
-</h4>
-</div>
-</div>
-<!--Панель A #####################################################################################-->
- <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
-	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el1">A</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Задача A+B</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">1</div>
-	  <div class="col-xs-2 col-lg-1">10</div>
-	 </div>
- </h4>
- </div>
- <div id="el1" class="panel-collapse collapse in">
- <div class="panel-body">
- 
-   <div class="row">
-          <div class="col-lg-6">
-            <div class="well bs-component">
-              <form class="form-horizontal">
-                <fieldset>
-				  <div class="form-group">
-						<label for="textArea" class="col-xs-1 col-lg-1 control-label">Язык</label>
-						<div class="clearfix visible-xs-block"></div>
-						<div class="col-xs-4 col-lg-4">
-							<select class="form-control" id="select">
-								<option>С++</option>
-								<option>FPC</option>
-								<option>C#</option>
-							</select>
-							  <div class="checkbox">
-								<label>
-								  <input type="checkbox">Запомнить язык
-								</label>
-							</div>
-						</div>
-					<!--
-                      <button type="reset" class="btn btn-lg btn-default">Вставить</button>
-                      <button type="submit" class="btn btn-lg btn-danger">Отправить</button>
-					  -->
-					  <div class="col-xs-3 col-lg-3 col-xs-offset-1 col-lg-offset-1">
-						<button type="reset" class="btn btn-default">Вставить</button>
-					  </div>
-					  <div class="col-xs-2 col-lg-2">
-						<button type="submit" class="btn btn-danger">Отправить</button>
-					  </div>
-				  </div>
-                
-                  <div class="form-group">
-                    <label for="textArea" class="col-xs-1 col-lg-1 control-label">Код</label>
-                    <div class="col-lg-11">
-                      <textarea class="form-control" rows="10" id="textArea"></textarea>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1 col-lg-1">№</div>
+                <div class="col-xs-5 col-lg-8">Название задачи</div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <!--<div class="clearfix visible-xs-block"></div>-->
+                <div class="col-xs-2 col-lg-1">Условие</div>
+                <div class="col-xs-2 col-lg-1">Время</div>
+                <div class="col-xs-2 col-lg-1">Память</div>
             </div>
-          </div>
-		  
-		  <div class="col-lg-6">
-            <div class="well bs-component">
-              <form class="form-horizontal">
-                <fieldset>
-				  <div class="form-group">
-				  
-					<!--<div url-show="http://docs.google.com/viewer?url=http://acm.bsu.by/download/2015sch.pdf&amp;embedded=true" class="show_docs" onclick="showDocs(this); return false;">-->
-                                        <div url-show="http://docs.google.com/viewer?url=http://statement.bacs.cs.istu.ru/statement/get/CitiYWNzL3Byb2JsZW0vMTAwMC9zdGF0ZW1lbnQvdmVyc2lvbnMvQy9odG1sEgYKBDLsTw4/bacs.test/PyrnJm9GzdyUyul2TRozXvceZnjHW1r3CA1yk4KNqYcFpQoFEyyjdRJWMU7TCs0M0F9ayuncuDJy3ZSwOU7L3POje3EXLiCHRj3iPhj3CJrv7lHZBouFG9Y_HvQDXwdPki1kECIFwwDRdatVMiwh2qff2H1OXcGsrcxP4vb8jndCEYZHgytD_xNzBKiV6zsL-6fVeW4tAVAtBr9bbARII6I6drtHKGs_r1qfvqqu2DyLW4drnXAYR4Tsw5yZEvl9pQHFHY3RjadTlpi0wrugyK_EnfRcXfQZuAzI9MGolLjsvSn4BsjtF6udRw4SbAw1VRuRaenGsCPj9PngC7WiKw&amp;embedded=true" class="show_docs" onclick="showDocs(this); return false;">
-					<span><center>Посмотреть условие задачи</center></span>
-						<div class="file_block" style="height: 0px;">
-							<iframe src="" height="858" width="620"></iframe>
-						</div>
-					</div>
-				  
-				  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>				  
-		  
-      </div>
- 
- 
- </div>
- </div>
- </div>
-<!--Панель B #####################################################################################-->
- <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
- 	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el2">B</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el2">Вторая задача с очень длинным названием, которое не влазит на одну строку.</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">3</div>
-	  <div class="col-xs-2 col-lg-1">100</div>
-	 </div>
- </h4>
- </div>
- <div id="el2" class="panel-collapse collapse">
- <div class="panel-body">Форма 2.
- 
-<div class="bs-example">
-    <div class="color-swatches">
-      <div class="color-swatch brand-primary"></div>
-      <div class="color-swatch brand-success"></div>
-      <div class="color-swatch brand-info"></div>
-      <div class="color-swatch brand-warning"></div>
-      <div class="color-swatch brand-danger"><h1>A</h1></div>
-    </div>
-  </div>
-
- 
- </div>
- </div>
- </div>
-<!--Панель C #####################################################################################--> 
- <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
-  	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el3">С</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el3">Последняя задача</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">5</div>
-	  <div class="col-xs-2 col-lg-1">50</div>
-	 </div>
- </h4>
- </div>
- <div id="el3" class="panel-collapse collapse">
- <div class="panel-body">Форма 3.</div>
- </div>
- </div>
-<!--Панель D #####################################################################################--> 
- <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
-  	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el4">D</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el4">Задача D</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">5</div>
-	  <div class="col-xs-2 col-lg-1">50</div>
-	 </div>
- </h4>
- </div>
- <div id="el4" class="panel-collapse collapse">
- <div class="panel-body">
- 
-         <div class="row">
-          <!--<div class="col-lg-12">
-            <div class="page-header">
-              <h1 id="forms">C</h1>
-            </div>
-          </div>-->
         </div>
-		Текст
- 
- </div>
- </div>
- </div>
-<!--Панель E #####################################################################################--> 
-  <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
-  	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el5">E</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el5">Задача E</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">5</div>
-	  <div class="col-xs-2 col-lg-1">50</div>
-	 </div>
- </h4>
- </div>
- <div id="el5" class="panel-collapse collapse">
- <div class="panel-body">Форма 3.</div>
- </div>
- </div>
-<!--Панель F #####################################################################################-->  
-  <div class="panel panel-default">
- <div class="panel-heading">
- <h4 class="panel-title">
-  	 <div class="row">
-	  <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el6">F</a></div>
-	  <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el6">Задача F</a></div>
-	  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-	  <!--<div class="clearfix visible-xs-block"></div>-->
-	  <div class="col-xs-2 col-lg-1">Открыть</div>
-	  <div class="col-xs-2 col-lg-1">5</div>
-	  <div class="col-xs-2 col-lg-1">50</div>
-	 </div>
- </h4>
- </div>
- <div id="el6" class="panel-collapse collapse">
- <div class="panel-body">Форма 3.</div>
- </div>
- </div>
+    </div>
+<!--Панель A #####################################################################################-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el1">A</a></div>
+                <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Задача A+B</a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <!--<div class="clearfix visible-xs-block"></div>-->
+                <div class="col-xs-2 col-lg-1">Открыть</div>
+                <div class="col-xs-2 col-lg-1">1</div>
+                <div class="col-xs-2 col-lg-1">10</div>
+            </div>
+        </div>
+        <div id="el1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="well bs-component">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="textArea" class="col-xs-1 col-lg-1 control-label">Язык</label>
+                                        <div class="clearfix visible-xs-block"></div>
+                                        <div class="col-xs-4 col-lg-4">
+                                            <select class="form-control" id="select">
+                                                <option>С++</option>
+                                                <option>FPC</option>
+                                                <option>C#</option>
+                                            </select>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">Запомнить язык
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!--
+                                        <button type="reset" class="btn btn-lg btn-default">Вставить</button>
+                                        <button type="submit" class="btn btn-lg btn-danger">Отправить</button>
+                                        -->
+                                        <div class="col-xs-3 col-lg-3 col-xs-offset-1 col-lg-offset-1">
+                                            <button type="reset" class="btn btn-default">Вставить</button>
+                                        </div>
+                                        <div class="col-xs-2 col-lg-2">
+                                            <button type="submit" class="btn btn-danger">Отправить</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textArea" class="col-xs-1 col-lg-1 control-label">Код</label>
+                                        <div class="col-lg-11">
+                                            <textarea class="form-control" rows="10" id="textArea"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="well bs-component">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div url-show="http://docs.google.com/viewer?url=http://statement.bacs.cs.istu.ru/statement/get/CitiYWNzL3Byb2JsZW0vMTAwMC9zdGF0ZW1lbnQvdmVyc2lvbnMvQy9odG1sEgYKBDLsTw4/bacs.test/PyrnJm9GzdyUyul2TRozXvceZnjHW1r3CA1yk4KNqYcFpQoFEyyjdRJWMU7TCs0M0F9ayuncuDJy3ZSwOU7L3POje3EXLiCHRj3iPhj3CJrv7lHZBouFG9Y_HvQDXwdPki1kECIFwwDRdatVMiwh2qff2H1OXcGsrcxP4vb8jndCEYZHgytD_xNzBKiV6zsL-6fVeW4tAVAtBr9bbARII6I6drtHKGs_r1qfvqqu2DyLW4drnXAYR4Tsw5yZEvl9pQHFHY3RjadTlpi0wrugyK_EnfRcXfQZuAzI9MGolLjsvSn4BsjtF6udRw4SbAw1VRuRaenGsCPj9PngC7WiKw&amp;embedded=true" class="show_docs" onclick="showDocs(this); return false;">
+                                        <span><center>Посмотреть условие задачи</center></span>
+                                            <div class="file_block" style="height: 0px;">
+                                                <iframe src="" height="858" width="620"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>				  
+                </div>
+            </div>
+        </div>
+    </div>
+<!--Панель B #####################################################################################-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el2">B</a></div>
+                <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el2">Вторая задача с очень длинным названием, которое не влазит на одну строку.</a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <!--<div class="clearfix visible-xs-block"></div>-->
+                <div class="col-xs-2 col-lg-1">Открыть</div>
+                <div class="col-xs-2 col-lg-1">3</div>
+                <div class="col-xs-2 col-lg-1">100</div>
+            </div>
+        </div>
+        <div id="el2" class="panel-collapse collapse">
+            <div class="panel-body">Форма 2.</div>
+        </div>
+    </div>
+<!--Панель C #####################################################################################--> 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-1 col-lg-1"><a data-toggle="collapse" data-parent="#collapse-group" href="#el3">С</a></div>
+                <div class="col-xs-5 col-lg-8"><a data-toggle="collapse" data-parent="#collapse-group" href="#el3">Последняя задача</a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <!--<div class="clearfix visible-xs-block"></div>-->
+                <div class="col-xs-2 col-lg-1">Открыть</div>
+                <div class="col-xs-2 col-lg-1">5</div>
+                <div class="col-xs-2 col-lg-1">50</div>
+            </div>
+        </div>
+        <div id="el3" class="panel-collapse collapse">
+            <div class="panel-body">Форма 3.</div>
+        </div>
+    </div>
 </div>
 </html>
