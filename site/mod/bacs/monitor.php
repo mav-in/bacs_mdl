@@ -167,13 +167,12 @@ foreach($results as $result) {
     $task_count++;
 };
 $header[] = '+';
-$header[] = 'Points';
+$header[] = 'Time';
 $table->head = $header;
 
 //МОНИТОР
 class MyRec {
     var $fault;
-    var $points; //+
     var $ac;
     var $ac_time;
     var $submit_time;
@@ -185,11 +184,11 @@ class Boo {
     var $solved;
     var $start_time;
 }
-function user_cmp($a, $b) { //+
+function user_cmp($a, $b) {
     if ($a->solved > $b->solved) return -1;
     else if ($a->solved < $b->solved) return 1;
-    else if ($a->pen < $b->pen) return 1;
-    else if ($a->pen > $b->pen) return -1;
+    else if ($a->pen < $b->pen) return -1;
+    else if ($a->pen > $b->pen) return 1;
     else if ($a->name < $b->name) return -1;
     else if ($a->name > $b->name) return 1;
     else return 0;
@@ -205,7 +204,7 @@ function formtime($sec)
 }
 
 //Заметка, отрицательные отправки по контесту не проверили
-$results = $DB->get_records_select('bacs_submits', "submit_time <= $endtime AND contest_id = $id", array($params = null), 'points DESC, submit_time DESC');
+$results = $DB->get_records_select('bacs_submits', "submit_time <= $endtime AND contest_id = $id", array($params = null), 'id, user_id, contest_id, task_id, lang_id, source, submit_time, result_id, test_num_failed, max_time_used, max_memory_used, info');
 //Ищем сколько фэйлов сделал пользователь, и когда произошел аксепт по каждой задачке
 unset($data);
 foreach($results as $result) {
@@ -219,12 +218,11 @@ foreach($results as $result) {
         $rec = new MyRec();
         $rec->fault = 0; //Ошибок
         $rec->ac = 0; //Правильных
-        $rec->points = 0; //+
         $rec->ac_time = 0; //Время правильного
     }
     if ($rec->ac)//Если в предыдущеем проходе решение принято - пропускаем цикл
         continue;
-    if ((format_string($result->result_id) == 13) OR (format_string($result->result_id) == 12)) { //Сохраняем данные по принятой задачке //+
+    if (format_string($result->result_id) == 13) { //Сохраняем данные по принятой задачке
         $rec->ac = 1;
         $rec->ac_time = $result->submit_time - $bacs->starttime;
     }
@@ -234,7 +232,6 @@ foreach($results as $result) {
             $rec->submit_time = $result->submit_time - $bacs->starttime;
         }
     }
-    $rec->points = $result->points; //+
     $data[$cur_uid][$lit] = $rec; //Возвращаем полученные данные
 }
 
@@ -247,19 +244,15 @@ if (isset($data)) {
         $u->id = $cur_uid;
         $hh[$cur_uid] = $usern;
         $u->pen = 0;
-        $u->solved = 0;        
-        $u->points = 0; //+
+        $u->solved = 0;
         foreach ($rec0 as $lit => $rec) {
-            //if ($rec->ac) { //+
-            if ($rec->points > 0) {
+            if ($rec->ac) {
                 ++$u->solved;
-                //$u->pen += (int)($rec->ac_time / 60); //+
-                //$u->pen += $rec->fault * 20; //+
-                $u->pen += (int)$rec->points;
+                $u->pen += (int)($rec->ac_time / 60);
+                $u->pen += $rec->fault * 20;
                 $cstat[0][$lit] = ++$сstat[0][$lit];
             }
             $cstat[1][$lit] += $rec->fault;
-            $u->points += (int)$rec->points; //+
         }
 
         $user[$usern] = $u;
@@ -306,15 +299,13 @@ for ($i = 0; $i < $usern; ++$i) {
                $msg = '<font color=green>+';
                if ($rec->fault) $msg .= $rec->fault;
                $time = formtime($rec->ac_time);
-               //$msg .= "<br><font size=-2>$time</font></font>"; //+
-               $msg .= "<br>$rec->points</font>"; //+
+               $msg .= "<br><font size=-2>$time</font></font>";
             }
             else {
                 if ($rec->fault) {
                     $time = formtime($rec->submit_time);
                     $msg = "<font color=red>-$rec->fault";
-                    //$msg .= "<br><font size=-2>$time</font></font>"; //+
-                    $msg .= "<br>$rec->points</font>"; //+
+                    $msg .= "<br><font size=-2>$time</font></font>";
                 }
                 else $msg = '&nbsp;';
             }
