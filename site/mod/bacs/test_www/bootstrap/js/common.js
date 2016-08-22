@@ -4,8 +4,12 @@
         var oIframeUrl = oLink.getAttribute('url-show');
         if(oBlock.style.height == 0+'px') {
             oBlock.style.height = 858+'px';
-            if(oIframe.src != oIframeUrl) {oIframe.src = oIframeUrl};
+            oBlock.style.display = 'block';
+            if(oIframe.src != oIframeUrl) {
+                oIframe.src = oIframeUrl
+            };
         } else {
             oBlock.style.height = 0+'px';
+            oBlock.style.display = 'none';
         }
     }
