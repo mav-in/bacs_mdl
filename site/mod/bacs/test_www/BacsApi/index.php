@@ -16,7 +16,7 @@ try{
 #rejudgeSubmit
 /*
 try{
-    $res = $apiClient->rejudgeSubmit(4053);
+    $res = $apiClient->rejudgeSubmit(4195);
     print_r($res);
 }catch(Exception $e){
     print_r($e->getMessage());
@@ -27,13 +27,25 @@ print_r($res);
 #getResultAll
 /*
 try{
-    $res = $apiClient->getResultAll(Array(4052));
+    print_r('test');
+    $res = $apiClient->getResultAll(Array(4237));
+    print_r($res);
     foreach($res as $mes){
         print_r($mes->getSubmitId());
         print_r($mes->getSystemStatus());
         print_r($mes->getBuildStatus());
         print_r($mes->getBuildOutput());
-        print_r($mes->getTestGroup());
+        //print_r($mes->getTestGroup());
+        if (isset($mes)) {
+            print_r('OK');
+        }
+        foreach ($mes->getTestGroup() as $rec) {
+            print_r($rec->getTestId());
+            print_r($rec->getStatus());
+            //print_r($rec->getJudgeMessage());
+            print_r($rec->getTimeUsageMillis());
+            print_r($rec->getMemoryUsageBytes());
+        }
     }
 }catch(Exception $e){
     print_r($e->getMessage());
@@ -43,7 +55,7 @@ try{
 #getResult
 /*
 try{
-    $res = $apiClient->getResult(4052);
+    $res = $apiClient->getResult(4195);
     print_r($res->getSubmitId());
     print_r($res->getSystemStatus());
     print_r($res->getBuildStatus());
@@ -88,7 +100,7 @@ try{
     $res = $apiClient->getProblems();
     foreach($res as $mes){
         print_r($mes->getId());
-        print_r($mes->getInfo());
+        print_r($mes->getInfo()["Name"]);
         print_r($mes->getTimeLimitMillis());
         print_r($mes->getMemoryLimitBytes());
     }
@@ -123,9 +135,12 @@ try{
 }
 */
 
+/*
 try{
     $res = $apiClient->Ping();
     var_dump($res);
 }catch(Exception $e){
     echo $e->getMessage();
 }
+ */
+echo '[end]';
