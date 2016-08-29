@@ -25,6 +25,9 @@ $string['pluginadministration'] = 'bacs settings';
 $string['pluginname'] = 'BACS Contest';
 //Task
 $string['task'] = 'Задача';
-$string['prog lang'] = 'Язык программирования';
+$string['prog_lang'] = 'Язык программирования';
 $string['source'] = 'Текст решения';
-$string['load from file'] = 'Загрузить из файла';
+$string['load_from_file'] = 'Загрузить из файла';
+//Status
+$string['not_found'] = 'Not found!';
+$string['not_started'] = 'Contest has not started!';
