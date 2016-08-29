@@ -69,7 +69,7 @@ $apiClient = new Bacs\Client();
 
 // SQL запрашиваем результаты
 if ($apiClient->Ping()) {
-    $resdb = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC');
+    $resdb = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC', 'id, submit_id, sync_submit_id, error');
     $sync_ids = array();
     $ida = array();
     $ids = array();
@@ -91,7 +91,8 @@ if ($apiClient->Ping()) {
             foreach($res as $item){
                 //print_r($item);
                 if(!is_null($item->getBuildStatus()) AND !is_null($item->getSystemStatus())) {
-                    $transaction = $DB->start_delegated_transaction();                   
+                    $transaction = $DB->start_delegated_transaction();
+                    
                     $tests = $item->getTestGroup();
                     $points = 0;
                     $max_time_used = 0;
@@ -116,7 +117,6 @@ if ($apiClient->Ping()) {
                             }
                             if ($rec->getStatus() == 0) {
                                 $points += $point[$record->test_id];
-                                var_dump($point);
                             }
                             $record->time_used = $time_used;
                             $record->memory_used = $memory_used;
@@ -136,6 +136,7 @@ if ($apiClient->Ping()) {
                     unset($rec);
                     
                     $rec1 = new stdClass();
+                    echo($ida[$i]);
                     $rec1->id = $ida[$i];
                     $rec1->submit_id = $ids[$i];
                     $rec1->status_id = 3;
@@ -145,24 +146,12 @@ if ($apiClient->Ping()) {
 
                     $transaction->allow_commit();
                 } else {
-                    $transaction = $DB->start_delegated_transaction();
-                    $rec1 = new stdClass();
+                    $rec = new stdClass();
                     $rec1->id = $ida[$i];
                     $rec1->submit_id = $ids[$i];
-                    $rec1->error = ++$err[$i];
-                    $rec1->timestamp = time();
-                    $lastinsertid = $DB->update_record_raw('bacs_cron', $rec1);                  
-                    unset($rec1);
-                    
-                    if ($err[$i] > 3) {
-                        $rec = new stdClass();
-                        $rec->id = $ids[$i];
-                        $rec->result_id = 0;
-                        $lastinsertid = $DB->update_record_raw('bacs_submits', $rec);             
-                        unset($rec);
-                    }
-                    
-                    $transaction->allow_commit();
+                    $rec->error = $err[$i]++;
+                    $rec->timestamp = time();
+                    $lastinsertid = $DB->update_record_raw('bacs_cron', $rec);                  
                 }
                 $i += 1;
             }
@@ -175,7 +164,7 @@ if ($apiClient->Ping()) {
 // SQL выборка задач на обработку
 // IN: id user_id contest_id task_id lang_id source submit_time result_id sync_submit_id test_num_failed max_time_used max_memory_used info
 // OUT: id submit_id sync_submit_id submit_type status_id flag error timestamp
-$task_ids = $DB->get_records('bacs_submits', array('contest_id' => $bacs->id, 'result_id' => 1), null, 'id, submit_time');
+$task_ids = $DB->get_records('bacs_submits', array('contest_id' => $bacs->id, 'result_id' => 0), null, 'id, submit_time');
 //$task_ids = $DB->get_records('bacs_submits', array('contest_id' => $bacs->id, 'result_id' => 0));
 foreach($task_ids as $mes){
     $transaction = $DB->start_delegated_transaction();
@@ -192,7 +181,7 @@ foreach($task_ids as $mes){
     
     $update = new stdClass();
     $update->id = $mes->id;
-    $update->result_id = 2;
+    $update->result_id = 1;
     $lastinsertid1 = $DB->update_record_raw('bacs_submits', $update);
     
     $transaction->allow_commit();
@@ -233,7 +222,7 @@ if ($apiClient->Ping()) {
         print_r($e->getMessage());
     }
 }
-   
+    
 if (!$student)
 {  
     //require_once(dirname(__FILE__).'/lib.php');
