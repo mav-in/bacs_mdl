@@ -29,7 +29,7 @@
         <FIELD NAME="time_limit_millis" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Время на выполнение решения msec"/>
         <FIELD NAME="memory_limit_bytes" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Память на выполннеие в байтах"/>
         <FIELD NAME="count_tests" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Количество тестов"/>
-        <FIELD NAME="test_points" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Баллы за тесты"/>
+        <FIELD NAME="test_points" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Баллы за тесты (по-умолчанию)"/>
         <FIELD NAME="statement_url" TYPE="char" LENGTH="511" NOTNULL="false" SEQUENCE="false" COMMENT="url на условие задачи"/>
         <FIELD NAME="revision" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Ревизия задачи"/>
       </FIELDS>
@@ -42,6 +42,7 @@
         <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
         <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор контеста"/>
         <FIELD NAME="task_order" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Порядок задач в контесте"/>
+        <FIELD NAME="test_points" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Баллы за тесты (персональные)"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="task_id, contest_id"/>
@@ -59,8 +60,8 @@
         <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Результат проверки"/>
         <FIELD NAME="test_num_failed" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Номер проваленного теста"/>
         <FIELD NAME="points" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="Очки за тесты"/>
-        <FIELD NAME="max_time_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальное использованное время"/>
-        <FIELD NAME="max_memory_used" TYPE="number" LENGTH="11" DECIMALS="5" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальная использованная память"/>
+        <FIELD NAME="max_time_used" TYPE="int" LENGTH="7" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальное использованное время"/>
+        <FIELD NAME="max_memory_used" TYPE="int" LENGTH="7" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальная использованная память"/>
         <FIELD NAME="info" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Сообщение компилятора"/>
         <!--<FIELD NAME="revision" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Ревизия задачи"/>-->
       </FIELDS>
@@ -117,6 +118,7 @@
     <TABLE NAME="bacs_results" COMMENT="Строковое описание статусов проверки задачи">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
         <FIELD NAME="result_str" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание проверяющей системы"/>
         <FIELD NAME="info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Комментарий к статусу"/>
       </FIELDS>
