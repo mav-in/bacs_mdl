@@ -31,7 +31,6 @@ if ($id) {
 
 require_login($COURSE, true, $CM);
 $CONTEXT = context_module::instance($CM->id);
-
 //add_to_log($COURSE->id, 'bacs', 'view', "monitor.php?id={$CM->id}", $BACS->name, $CM->id);
 
 /// Print the page header
@@ -39,12 +38,12 @@ $CONTEXT = context_module::instance($CM->id);
 $PAGE->set_url('/mod/bacs/view.php', array('id' => $CM->id));
 $PAGE->set_title(format_string($BACS->name));
 
-$PAGE->requires->css('/mod/bacs/bootstrap/css/docs.min.css');
-$PAGE->requires->css('/mod/bacs/bootstrap/css/common.css');
-$PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
+//$PAGE->requires->css('/mod/bacs/bootstrap/css/docs.min.css');
+//$PAGE->requires->css('/mod/bacs/bootstrap/css/common.css');
+//$PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
 
-$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/jquery-2.2.2.js', true);
-$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/production.js', true);
+//$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/jquery-2.2.2.js', true);
+//$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/production.js', true);
 //$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/font.js', true);
 $PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/common.js', true);
 
@@ -157,13 +156,22 @@ print $status_contest->get_fullstatusstring();
 function menu() {
     GLOBAL $CM;
     $link = optional_param('link', 0, PARAM_ALPHANUM);
-    if (is_null($link)) {
+    if (is_null($link) OR $link == "") {
         $link = 'view';
     }
+    /*
     $menuItems = array(
         'view' => '<span class="glyphicon glyphicon-stats"></span> Монитор',
         'tasks' => '<span class="glyphicon glyphicon-th-list"></span> Список задач',
-        'results' => '<span class="glyphicon glyphicon-tasks"></span> Мои посылки'
+        'results' => '<span class="glyphicon glyphicon-tasks"></span> Мои посылки',
+        'points' => '<span class="glyphicon glyphicon-cog"></span>'
+    );
+    */
+    $menuItems = array(
+        'view' => '<i class="icon-home"></i></span> Монитор',
+        'tasks' => '<i class="icon-th-list"></i></span> Список задач',
+        'results' => '<i class="icon-th"></i></span> Мои посылки',
+        'points' => '<i class="icon-cog"></i></span>'
     );
     $msg = '<ul class="nav nav-tabs">';
     foreach($menuItems as $menuItemId => $menuItem) {
@@ -182,8 +190,30 @@ function menu() {
             <li><a href="#">Другие</a></li>
         </ul>
     </li>';
+
+    $msg = '<li class="dropdown">'
+    .'<a class="dropdown-toggle"'
+      .' data-toggle="dropdown"'
+       .'href="#">Dropdown<b class="caret"></b>'
+      .'</a>'
+    .'<ul class="dropdown-menu">'
+      .'<div>test</div>'
+    .'</ul>'
+  .'</li>';
     */
-    $msg .= '</ul>';
+        $groups = get_my_groups();
+        if ($groups) {
+            $msg .= '<li class="dropdown"';
+            $msg .= ($menuItemId == $link ? ' class="active"':'');
+            $msg .= '><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i></span> Первая группа<b class="caret"></b></a>'
+                    .'<ul class="dropdown-menu">';
+            foreach ($groups['name'] as $groups['id'] => $group) {
+                $msg .= '<li><a href="#">'.$group.'</a></li>';
+            }
+            $msg .= '<li class="divider"></li><li><a href="#">Все группы</a></li></ul></li>';
+        }
+    //$msg .= '</ul>';
+    //$msg = '<ul class="nav" id="yui_3_17_2_1_1474794429854_585"><li class="dropdown langmenu open" id="yui_3_17_2_1_1474794429854_584"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Язык" id="yui_3_17_2_1_1474794429854_583">Русский &lrm;(ru)&lrm;<b class="caret"></b></a><ul class="dropdown-menu"><li><a title="Русский &lrm;(ru)&lrm;" href="http://172.16.0.2/mod/bacs/view.php?id=2&amp;lang=ru">Русский &lrm;(ru)&lrm;</a></li><li><a title="English &lrm;(en)&lrm;" href="http://172.16.0.2/mod/bacs/view.php?id=2&amp;lang=en">English &lrm;(en)&lrm;</a></li></ul></li></ul>';
     return $msg;
 }
 //Меню
@@ -210,23 +240,105 @@ class role {
 //СТАТИСТИКА
 //SELECT MIN(`submit_time`), `user_id`, `task_id` FROM `mdl_bacs_submits` WHERE `contest_id` = 2 GROUP BY `task_id` HAVING MIN(`submit_time`)
 
+
+// Группы модулей курса
+$currentgroupactivityid = groups_get_activity_group($CM);
+$currentgroupactivityname = groups_get_group_name($currentgroupactivityid);
+
+// Группы курса
+$currentgroupcourseid = groups_get_course_group($COURSE);
+$currentgroupcoursename = groups_get_group_name($currentgroupcourseid);
+
+function get_my_groups() {
+    $my_groups = groups_get_my_groups();
+    $group = array(array());
+    foreach ($my_groups as $msg) {
+        $group['id'][] = $msg->id;
+        $group['name'][] = $msg->name;
+    }
+    return $group;
+}
+// mdl_course
+//var_dump($CM->visible);
+//var_dump($CM->groupmode);
+
+// Доступ
+//var_dump(groups_user_groups_visible($COURSE, $USER->id, $cm = null));
+//var_dump(groups_user_groups_visible($COURSE, $USER->id, $CM));
+
+// groups + groups_members
+/*
+var_dump(groups_get_my_groups());
+
+//function groups_get_members($groupid, $fields='u.*', $sort='lastname ASC') {
+echo '<br/><br/>';
+$res = groups_get_members(2);
+foreach ($res as $msg) {
+    echo '<br/><br/>';
+    var_dump($msg);
+}
+*/
+//var_dump(groups_get_user_groups($COURSE->id, $USER->id));
+//exit;
+
+$coursemodulesid = $DB->get_records('groups', array('courseid' => $COURSE->id), NULL, 'id');
+$courseid = array();
+foreach ($coursemodulesid as $rec) {
+    $courseid[] = $rec->id;
+}
+
+$members = $DB->get_records_list('groups_members', 'groupid', $courseid, null, 'userid');
+
+//echo('<pre>'.$members.'</pre>');
+/*
+$coursemodulesid = $DB->get_record('groups', array('id' => $COURSE->id), groupid);
+if (groups_get_activity_groupmode($CM)) {
+    $groups = groups_get_activity_allowed_groups($CM);
+} else {
+    $groups = array();
+}
+if (! in_array($coursemodulesid->groupid, array_keys($groups))) {
+    //print_error('groupnotamember', 'group');
+}
+*/
+//var_dump($currentgroupactivityname);
+//exit;
+        
 class pupils {
     private $users;
     
     private function set_users_module() {
-        GLOBAL $DB, $CM;
+        GLOBAL $DB, $CM, $COURSE;
         $role = $DB->get_record('role', array('shortname' => 'student')); 
         $context_instance = context_module::instance($CM->id);
         //$context_instance = context_course::instance($COURSE->id);
-        $this->users = get_role_users($role->id, $context_instance);        
+        
+        if ($COURSE->groupmode == 1 OR $CM->groupmode == 1) {
+            $currentgroupid = groups_get_activity_group($CM);
+            //$currentgroupid = groups_get_group_name($COURSE->id);
+            $this->users = groups_get_members(1);
+        } else {
+            $this->users = get_role_users($role->id, $context_instance);       
+        }
+ //       $this->users = get_role_users($role->id, $context_instance);        
     }
 
     private function set_users_course() {
-        GLOBAL $DB, $COURSE;
+        GLOBAL $DB, $CM, $COURSE;
         $role = $DB->get_record('role', array('shortname' => 'student')); 
         $context_instance = context_course::instance($COURSE->id);
         //$context_instance = context_course::instance($COURSE->id);
-        $this->users = get_role_users($role->id, $context_instance);        
+        //var_dump(groups_get_course_groupmode($COURSE->id));
+        if ($COURSE->groupmode == 1 OR $CM->groupmode == 1) {
+            $currentgroupid = groups_get_activity_group($CM);
+            //$currentgroupid = groups_get_group_name($COURSE->id);
+            //var_dump($currentgroupid);
+            $this->users = groups_get_members(1);
+            //var_dump($this->users);
+        } else {
+            $this->users = get_role_users($role->id, $context_instance);        
+        }
+//        $this->users = get_role_users($role->id, $context_instance);        
     }
     
     public function get_users() {
@@ -422,7 +534,7 @@ class monitor extends contest{
             $cur_uid = format_string($result->user_id); //Получаем id пользователя
             $lit = $lid[$result->task_id." ".$result->contest_id];
             //$lit = isset($lid[$result->task_id." ".$result->contest_id]) ? $lid[$result->task_id." ".$result->contest_id] : ''; //Литера
-            //if (!isset($data[$cur_uid]["1 1"])) continue;
+            if (!isset($data[$cur_uid]["0 1"])) continue;
             $rec = $data[$cur_uid][$lit];
             //$rec = isset($data[$cur_uid][$lit]) ? $data[$cur_uid][$lit] : ''; //Собираем статистику по связке пользователь+[задача+контест]
             if (!$rec) { //Если первый проход
@@ -528,7 +640,7 @@ class monitor extends contest{
         foreach ($lid as $tmp => $lit) {
             $rec = isset($data[$uid][$lit]) ? $data[$uid][$lit] : '';
                 //var_dump($rec);
-            if (!$rec) $msg = '&nbsp;';
+            if (!$rec) $msg = '-';
             else {
                 if ($rec->ac) {
                    $msg = "<font color=green>".$rec->points."&nbsp;"; //+
@@ -542,7 +654,7 @@ class monitor extends contest{
                     if ($rec->fault) {
                         $time = formtime($rec->submit_time);
                         //$msg .= "<br><font size=-2>$time</font></font>"; //+
-                        $msg = "<font color=red>".$rec->points."&nbsp;"; //+
+                        $msg = "<font color=red>".(is_null($rec->points)?'?':$rec->points)."&nbsp;"; //+
                         $msg .= "<sub>[$rec->fault]</sub></font>";
                     }
                     else $msg = '-';
@@ -553,7 +665,7 @@ class monitor extends contest{
         return $cells;
     }
 
-    public function get_data($data, $lid, $uid) {
+    public function get_data($data, $lid) {
         $table = array();
         
         $usern = $this->usern;
@@ -566,7 +678,9 @@ class monitor extends contest{
         //$result = array();
         for ($i = 0; $i < $usern; ++$i) {
             $place[$i] = $i + 1;
-            if ($i && ($user[$i - 1]->solved == $user[$i]->solved) && ($user[$i - 1]->pen == $user[$i]->pen)) $place[$i] = $place[$i - 1];
+            if ($i && ($user[$i - 1]->solved == $user[$i]->solved) && ($user[$i - 1]->pen == $user[$i]->pen)) {
+                $place[$i] = $place[$i - 1];
+            }
             //$result = array($place[$i], $user[$i]->name);
             $cells = array();
             $cells[] = $place[$i];
@@ -581,6 +695,50 @@ class monitor extends contest{
 
             $table[] = $cells;
         }
+
+        $count = $this->get_num_of_tasks();
+        $cstat = $this->get_cstat();
+        $cstat_msg = array('<font color=green>Удачных решений:</font>','<font color=red>Попыток:</font>','Всего попыток:');
+        for ($i = 0; $i < count($cstat_msg) - 1; $i++) {
+            $tmp = array('',$cstat_msg[$i]);
+            for ($j = 1; $j <= $count; $j++) {
+                $tmp[] = $cstat[$i][$j];
+            }
+            for ($k = 0; $k < 2; $k++) {
+                $tmp[] = '';    
+            }
+            $table[] = $tmp;
+        }
+        $tmp = array('',$cstat_msg[count($cstat_msg) - 1]);
+        for ($j = 1; $j <= $count; $j++) {
+            $tmp[] = $cstat[0][$j] + $cstat[1][$j];
+        }
+        for ($k = 0; $k < 2; $k++) {
+            $tmp[] = '';    
+        }
+
+        $table[] = $tmp;
+
+        return $table;
+    }
+    
+    public function get_stat() {
+        $count = $this->get_num_of_tasks();
+        $cstat = $this->get_cstat();
+        $cstat_msg = array('<font color=green>Удачных решений:</font>','<font color=red>Попыток:</font>','Всего попыток:');
+        for ($i = 0; $i < count($cstat_msg) - 1; $i++) {
+            $tmp = array('',$cstat_msg[$i]);
+            for ($j = 0; $j < $count; $j++) {
+                $tmp[] = $cstat[$i][$j];
+            }
+            $table[] = $tmp;
+        }
+        $tmp = array('',$cstat_msg[count($cstat_msg) - 1]);
+        for ($j = 0; $j < $count; $j++) {
+            $tmp[] = $cstat[0][$j] + $cstat[1][$j];
+        }
+
+        $table[] = $tmp;
         return $table;
     }
 }
@@ -607,12 +765,87 @@ $user = $monitor->get_stat_user();
 $usern = $monitor->get_usern();
 $user = $monitor->get_username();
 
-$table->data = $monitor->get_data($data, $lid, $uid);
+$table->data = $monitor->get_data($data, $lid);
 
-$table->data[] = array('','<font color=green>Удачных решений:</font>',$cstat[0][0],$cstat[0][1],$cstat[0][1],'','');
-$table->data[] = array('','<font color=red>Попыток:</font>',$cstat[1][0],$cstat[1][1],$cstat[1][2],'','');
-$table->data[] = array('','Всего попыток:',$cstat[0][0]+$cstat[1][0],$cstat[0][1]+$cstat[1][1],$cstat[0][2]+$cstat[1][2],'','');
 //Печатаем табличку
+//$class = ($link['new']) ? 'class="wiki_newentry"' : 'class="wiki_newentry"';
+
+//$linkpage = '<a href="http://172.16.0.2"' . $class . '>link' . format_string($link['content']) . '</a>';
+//$icon = $OUTPUT->user_picture($user, array($COURSE->id));
+//$table->data[] = array("$icon&nbsp;$linkpage");
+//$table->data[] = array("$linkpage");
+
 echo html_writer::table($table);
 
+/*
+print '<div class="accordion" id="accordion2">
+  <div class="accordion-group container-fluid">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Collapsible Group Item #1
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group container-fluid">
+    <div class="breadcrumb-nav row-fluid">
+        <div class="span1" data-toggle="collapse" data-target="#collapseTwo">1</div>
+        <div class="span3" data-toggle="collapse" data-target="#collapseTwo">Mark</div>
+        <div class="span3" data-toggle="collapse" data-target="#collapseTwo">Otto</div>
+        <div class="span3"><a href="asd">ets</a></div>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span3 desktop-first"> Contents </div>
+<div class="span3"> Contents </div>
+<div class="span3"> Contents </div>
+<div class="span3"> Contents </div>
+</div>
+</div>
+';
+*/
+
+/*
+print '<div class="breadcrumb-nav row-fluid">
+    <div class="span1" data-toggle="collapse" data-target="#collapseOne">1</div>
+    <div class="span3" data-toggle="collapse" data-target="#collapseOne">Mark</div>
+    <div class="span3" data-toggle="collapse" data-target="#collapseOne">Otto</div>
+    <div class="span3"><a href="asd">ets</a></div>
+</div>
+<div id="collapseOne" class="row-fluid collapse in">
+    <div class="span1"></div>
+    <div class="span9">
+        Details 1 <br/>
+        Details 2 <br/>
+        Details 3 <br/>
+    </div>
+</div>
+
+<div class="row-fluid" data-toggle="collapse" data-target="#collapseTwo">
+    <div class="span1">1</div>
+    <div class="span3">Mark</div>
+    <div class="span3">Otto</div>
+    <div class="span3">@mdo</div>
+</div>
+<div id="collapseTwo" class="row-fluid collapse in">
+    <div class="span1"></div>
+    <div class="span9">
+        Details 1 <br/>
+        Details 2 <br/>
+        Details 3 <br/>
+    </div>
+</div>';
+*/
 echo $OUTPUT->footer();

@@ -67,8 +67,8 @@
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-        <KEY NAME="lang_id" TYPE="foreign" FIELDS="lang_id" REFTABLE="bacs_langs" REFFIELDS="langs_id"/>
-        <KEY NAME="result_id" TYPE="foreign" FIELDS="result_id" REFTABLE="bacs_results" REFFIELDS="results_id"/>
+        <KEY NAME="lang_id" TYPE="foreign" FIELDS="lang_id" REFTABLE="bacs_langs" REFFIELDS="id"/>
+        <KEY NAME="result_id" TYPE="foreign" FIELDS="result_id" REFTABLE="bacs_results" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
     <TABLE NAME="bacs_submits_tests" COMMENT="Эта таблица хранит иинформацию о всех задачах, которые дошли до тестов.">
@@ -79,6 +79,27 @@
         <FIELD NAME="status_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Статус теста"/>
         <FIELD NAME="time_used" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное использованное время"/>
         <FIELD NAME="memory_used" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальная использованная память"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits_tests_output" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="test_id" TYPE="int" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="output" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Вывод программы"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits_samples" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="test_id" TYPE="int" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="expected_input" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый ввод программы"/>
+        <FIELD NAME="Expected_output" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый вывод программы"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -118,9 +139,10 @@
     <TABLE NAME="bacs_results" COMMENT="Строковое описание статусов проверки задачи">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
-        <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
-        <FIELD NAME="result_str" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание проверяющей системы"/>
-        <FIELD NAME="info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Комментарий к статусу"/>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор статуса"/>
+        <FIELD NAME="result_str_acm" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы ACM"/>
+        <FIELD NAME="result_str_school" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы Школьный"/>
+        <FIELD NAME="result_str_custom" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы Прозвольный"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

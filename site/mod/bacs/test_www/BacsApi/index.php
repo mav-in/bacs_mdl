@@ -1,5 +1,9 @@
 <?php
 
+function echo_r ($msg) {
+    return "<pre>".$msg."</pre>";
+}
+
 include 'Client.php';
 $apiClient = new Bacs\Client();
 
@@ -16,14 +20,19 @@ try{
 #rejudgeSubmit
 /*
 try{
-    $res = $apiClient->rejudgeSubmit(4195);
+    $res = $apiClient->rejudgeSubmit(1,4299);
     print_r($res);
 }catch(Exception $e){
     print_r($e->getMessage());
 }
-print_r($res);
-*/
+var_dump($res);
 
+$submitIdAll = array(1,2);
+foreach($submitIdAll as $submitId){
+    $entry[] = array('Value'=>$submitId);
+}
+var_dump(json_encode(array('Entry'=>$entry)));
+*/
 #getResultAll
 /*
 try{
@@ -53,9 +62,9 @@ try{
 */
 
 #getResult
-/*
+
 try{
-    $res = $apiClient->getResult(4195);
+    $res = $apiClient->getResult(4299);
     print_r($res->getSubmitId());
     print_r($res->getSystemStatus());
     print_r($res->getBuildStatus());
@@ -64,7 +73,7 @@ try{
 }catch(Exception $e){
     print_r($e->getMessage());
 }
-*/
+
 
 
 #sendSubmitAll

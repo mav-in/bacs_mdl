@@ -15,7 +15,6 @@ $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
 $b  = optional_param('b', 0, PARAM_INT);  // bacs instance ID - it should be named as the first character of the module
 $edit  = optional_param('edit', 0, PARAM_BOOL); // Edit contest mode
 
-
 if ($id) {
     $cm         = get_coursemodule_from_id('bacs', $id, 0, false, MUST_EXIST);
     $course     = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
@@ -96,7 +95,12 @@ if ($apiClient->Ping()) {
                     $points = 0;
                     $max_time_used = 0;
                     $max_memory_used = 0;
+                    $test_num_failed = NULL;
+                    $pretest = true;
+                    $pretest_failed = false;
+                    $failed = false;
                     if ($tests) {
+                        // TODO Переделать в list запрос
                         $db_assign = $DB->get_record('bacs_submits', array('id' => $ids[$i]), 'task_id', MUST_EXIST);
                         $db_points = $DB->get_record('bacs_tasks', array('id' => $db_assign->task_id), 'test_points', MUST_EXIST);
                         $point = explode(",", $db_points->test_points);
@@ -105,7 +109,7 @@ if ($apiClient->Ping()) {
                             $record = new stdClass();
                             $record->submit_id = $ids[$i];
                             $record->test_id = $rec->getTestId();
-                            $record->status_id = $rec->getStatus();
+                            $record->status_id = (int)$rec->getStatus();
                             $time_used = $rec->getTimeUsageMillis();
                             $memory_used = $rec->getMemoryUsageBytes();
                             if ($time_used > $max_time_used) {
@@ -114,9 +118,22 @@ if ($apiClient->Ping()) {
                             if ($memory_used > $max_memory_used) {
                                 $max_memory_used = $memory_used;
                             }
-                            if ($rec->getStatus() == 0) {
-                                $points += $point[$record->test_id];
-                                var_dump($point);
+                            if (!$pretest_failed) {
+                                if ($pretest && $point[$record->test_id] != 0) {
+                                    $pretest = false;
+                                }
+                                if ($rec->getStatus() == 0) {
+                                    $points += $point[$record->test_id];
+                                } else {
+                                    if (!$failed) {
+                                        $failed = true;
+                                        $test_num_failed = $rec->getTestId();
+                                    }
+                                    if ($pretest) {
+                                        $pretest_failed = true;
+                                        $point = 0;
+                                    }
+                                }
                             }
                             $record->time_used = $time_used;
                             $record->memory_used = $memory_used;
@@ -124,10 +141,11 @@ if ($apiClient->Ping()) {
                         }
                         $lastinsertid = $DB->insert_records('bacs_submits_tests', $records);
                     }
-                    
+
                     $rec = new stdClass();
                     $rec->id = $ids[$i];
                     $rec->result_id = $item->getSystemStatus();
+                    $rec->test_num_failed = $test_num_failed;
                     $rec->points = $points;
                     $rec->info = $item->getBuildOutput();
                     $rec->max_time_used = $max_time_used;
@@ -154,7 +172,7 @@ if ($apiClient->Ping()) {
                     $lastinsertid = $DB->update_record_raw('bacs_cron', $rec1);                  
                     unset($rec1);
                     
-                    if ($err[$i] > 3) {
+                    if ($err[$i] > 60) {
                         $rec = new stdClass();
                         $rec->id = $ids[$i];
                         $rec->result_id = 0;
@@ -171,11 +189,11 @@ if ($apiClient->Ping()) {
         print_r($e->getMessage());
     }
 }
-    
+
 // SQL выборка задач на обработку
 // IN: id user_id contest_id task_id lang_id source submit_time result_id sync_submit_id test_num_failed max_time_used max_memory_used info
 // OUT: id submit_id sync_submit_id submit_type status_id flag error timestamp
-$task_ids = $DB->get_records('bacs_submits', array('contest_id' => $bacs->id, 'result_id' => 1), null, 'id, submit_time');
+$task_ids = $DB->get_records('bacs_submits', array('result_id' => 1), null, 'id, submit_time');
 //$task_ids = $DB->get_records('bacs_submits', array('contest_id' => $bacs->id, 'result_id' => 0));
 foreach($task_ids as $mes){
     $transaction = $DB->start_delegated_transaction();
@@ -212,9 +230,10 @@ if ($apiClient->Ping()) {
             $result_task = $DB->get_record('bacs_tasks', array('id' => $result->task_id), 'task_id', IGNORE_MISSING);
             $all[] = new Bacs\model\Submit($result_task->task_id, $result->source, $result->lang_id);
             $err[] = $mes->error;
+            var_dump($result);
         }
-        print_r($all);
         $res = $apiClient->sendSubmitAll($all);
+        var_dump($res);
         $i = 0;
         foreach($cron_ids as $mes){
             $record = new stdClass();

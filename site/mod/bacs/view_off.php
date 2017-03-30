@@ -31,11 +31,11 @@ if ($id) {
 require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 
-//add_to_log($course->id, 'bacs', 'view', "index.php?id={$cm->id}", $bacs->name, $cm->id);
+//add_to_log($course->id, 'bacs', 'view', "view.php?id={$cm->id}", $bacs->name, $cm->id);
 
 /// Print the page header
 
-$PAGE->set_url('/mod/bacs/index.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/bacs/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($bacs->name));
 
 $PAGE->requires->css('/mod/bacs/bootstrap/css/bootstrap.min.css');
@@ -58,48 +58,6 @@ else $contest_has_started = true;
 if ($DB->get_record('bacs_tasks_to_contests', array('contest_id' => $bacs->id))) $contest_has_tasks = true;
 else $contest_has_tasks = false;
 
-echo html_writer::script('', $CFG->wwwroot.'/mod/bacs/bootstrap/js/bootstrap.min.js');
-echo html_writer::script('', $CFG->wwwroot.'/mod/bacs/bootstrap/js/npm.js');
-
-include './apistat/Client.php';
-$apiClient = new Bacs\Stat();
-
-//$ids = array(195, 238);
-$ids = 195;
-
-try{
-    $submitId = $apiClient->get_statistic_course($ids, 153);
-
-    //var_dump($submitId);
-    
-    echo "START";
-    foreach($submitId as $mes){
-        echo "RUN";
-        var_dump($mes->getregUserCount());
-        die("DIE");
-    }
-}catch(Exception $e){
-    print_r($e->getMessage());
-}
-
-echo '<div class="bs-component">
-<table class="table table-striped table-hover ">
-  <tr>
-	<th>1</th><th>2</th><th>3</th>
-  </tr>  <tr>
-	<td>1</td><td>2</td><td>3</td>
-  </tr>
-  <tr>
-	<td>1</td><td>2</td><td>3</td>
-  </tr>
-</table>
-</div>
-
-<div class="mw-collapsible" style="width:400px">
-Это сворачивающийся текст.<br>
-Продолжение сворачивающегося текста.
-</div>';
-
 if (!$student)
 {
     echo $OUTPUT->box_start();
@@ -115,8 +73,7 @@ if (!$student)
     {
         echo $OUTPUT->box("Вы ещё не добавили задачи в контест. Это можно сделать в режиме редактрирования");
     }
-    else echo $OUTPUT->box("Добавьте задачи");    
-    
+    else echo $OUTPUT->box("Добавьте задачи");
 }
 
 echo $OUTPUT->footer();

@@ -31,3 +31,5 @@ $string['load_from_file'] = 'Загрузить из файла';
 //Status
 $string['not_found'] = 'Контест не найден!';
 $string['not_started'] = 'Контест ещё не начался!';
+
+$string['points'] = 'Баллы';

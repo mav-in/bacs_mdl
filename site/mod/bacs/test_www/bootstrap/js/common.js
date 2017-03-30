@@ -13,3 +13,10 @@
             oBlock.style.display = 'none';
         }
     }
+
+    $('.accordion').on('show', function() {
+        $(this).find('.accordion-toggle i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+    });    
+    $('.accordion').on('hide', function() {
+        $(this).find('.accordion-toggle i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
+    });

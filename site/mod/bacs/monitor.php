@@ -49,6 +49,8 @@ $PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/production.js', true);
 //$PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/font.js', true);
 $PAGE->requires->js('/mod/bacs/test_www/bootstrap/js/common.js', true);
 
+$PAGE->requires->js('/mod/bacs/js.js', true);
+
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 // Output starts here
@@ -91,6 +93,7 @@ if (!is_object($result)) {
 $cid = $result->id;
 $cname = $result->name;
 
+/*
 //ПОЛЬЗОВАТЕЛЬ
 //(int)$_GET['user_id'];
 //echo $USER->id;
@@ -150,14 +153,14 @@ $table->size  = array('32px', '');
 $task_count = 0;
 foreach($results as $result) {
     //!!!Костыль: нет проверки переполнения
-    /*
+
     if  ($result->task_order < 26) {
         $header[] = format_string(chr(64 + $result->task_order));
     }
     else {
         $header[] = format_string(chr(64 + ($result->task_order % 10)) + (int)($result->task_order / 10));
     }
-    */
+
     $header[] = $aid;
     //$header[] = format_string($result->task_id);
     //Собираем литеры контеста
@@ -332,5 +335,6 @@ $table->data[] = array('','<font color=red>Попыток:</font>',$cstat[1][1],
 $table->data[] = array('','Всего посылок:',$cstat[0][1]+$cstat[1][1],$cstat[0][2]+$cstat[1][2],$cstat[0][3]+$cstat[1][3],'','');
 //Печатаем табличку
 echo html_writer::table($table);
-    
+*/
+
 echo $OUTPUT->footer();

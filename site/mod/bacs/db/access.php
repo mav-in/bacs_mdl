@@ -25,6 +25,22 @@ $capabilities = array(
         'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
 
+    'mod/bacs:edit' => array(
+
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+            //'coursecreator' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            //'teacher' => CAP_ALLOW,
+            //'student' => CAP_ALLOW,
+            //'guest' => CAP_ALLOW,
+            //'user' => CAP_ALLOW,
+            //'fontpage' => CAP_ALLOW,
+        )
+    ),
+    
     'mod/bacs:view' => array(
 
         'captype' => 'read',

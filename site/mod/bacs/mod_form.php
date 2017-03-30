@@ -56,18 +56,22 @@ class mod_bacs_mod_form extends moodleform_mod {
 
         $mform->addElement(
             'advcheckbox',
+            //'hidden',
             'upsolving',
             get_string('upsolving', 'bacs'),
             '',
             array('group' => 1),
             array(0, 1)
         );
+        
+        /*
         $mform->addHelpButton(
             'upsolving',
             'upsolving',
             'bacs'
         );
-
+        */
+        
         $this->standard_coursemodule_elements();
 
         #$this->add_action_buttons(true, false, null);

@@ -71,7 +71,7 @@ if (!$student)
             $record->time_limit_millis = $mes->getTimeLimitMillis();
             $record->memory_limit_bytes = $mes->getMemoryLimitBytes();
             $record->compiler_type = $mes->getCompilerType();
-
+var_dump($record);
             $lastinsertid = $DB->insert_record('bacs_langs', $record, false);
         }
     }catch(Exception $e){

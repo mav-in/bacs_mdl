@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Таймер</title>
+        <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://172.16.0.2/lib/javascript.php/1471340425/mod/bacs/test_www/bootstrap/js/jquery-2.2.2.js"></script>  
+    </head>
+    <body>  
+        <div id="content1"></div>
+        <script>
+            function show()  
+            {
+                $.ajax({  
+                    url: "time.php",  
+                    type: "POST",
+                    data: {set: "1"},
+                    cache: false,
+                    async:true,
+                    success: function(html){  
+                        $("#content1").html(html);  
+                    }  
+                });  
+            }  
+            $(document).ready(function(){  
+                show();  
+                setInterval('show()',1000);  
+            });  
+        </script>
+        
+        <script>
+            $.getScript( "test.js", function() {
+                $('#getForecast').click( function() {
+                    var data = { city: "Васюки", date: "20120318" };
+                    $.get( 
+                         "test.txt",
+                          data,
+                          funcMy,
+                          "json"
+                    );
+                } );
+            } );
+        </script>
+        <button id="getForecast">Получить прогноз погоды</button>
+
+        <p>Какую страницу желаете открыть?</p>  
+        <form>  
+            <input id="btn1" type="button" value="Страница 1">   
+            <input id="btn2" type="button" value="Страница 2">  
+        </form>  
+        <div id="content2"></div>  
+        <script>  
+            $(document).ready(function(){  
+
+                $('#btn1').click(function(){  
+                    $.ajax({  
+                        url: "page1.html",  
+                        cache: false,  
+                        async:true,
+                        success: function(html){  
+                            $("#content2").html(html);  
+                        }  
+                    });  
+                });  
+
+                $('#btn2').click(function(){  
+                    $.ajax({  
+                        url: "page2.html",  
+                        cache: false,  
+                        async:true,
+                        success: function(html){  
+                            $("#content2").html(html);  
+                        }  
+                    });  
+                });  
+
+            });  
+        </script>  
+        
+        <!--<script>  
+        <script>
+        $( function() {
+            $.getScript( "test.js", function() {
+                $('#getForecast').click( function() {
+                    var data = { city: "Васюки", date: "20120318" };
+                    $.get( "test.txt", data, funcMy, "json" );
+                } );
+            } );
+        } );
+
+        </script>
+        
+            function show() {
+                $.ajax({  
+                    url: "time.php",  
+                    type: "POST",
+                    data: {set: "1"},
+                    cache: false,
+                    success: function(html){  
+                        $("#content").html(html);  
+                    }  
+                });  
+            }  
+            $(document).ready(function(){  
+                show();  
+                setInterval('show()',1000);  
+            });  
+        </script>-->
+
+        <form id="myForm">  
+        Введите имя:<br/>  
+            <input id="username" type="text" size="20"><br/><br/>  
+            <input type="submit" value="Отправить">  
+        </form>  
+
+        <div id="content"></div>  
+
+        <script>  
+            $(document).ready(function(){  
+
+                $('#myForm').submit(function(){  
+                    $.ajax({  
+                        type: "POST",  
+                        url: "greetings.php",  
+                        data: "username="+$("#username").val(),  
+                        async:true,
+                        success: function(html){  
+                            $("#content").html(html);  
+                        }  
+                    });  
+                    return false;  
+                });  
+
+            });  
+        </script>  
+    </body>  
+</html>
