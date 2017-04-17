@@ -254,8 +254,9 @@ $res = get_lang();
 
 //function bacs_print_task_send_form($BACS,$taskId){
 function bacs_print_task_send_form($BACS) {
-    global $DB;
+    global $DB, $CM, $USER;
     //global $LANGUAGES;
+    $res = $DB->get_records('bacs_langs', null, null, 'id, name');
     $task_select='';
     $lang_select='';
     foreach ($res as $mes){
@@ -298,6 +299,7 @@ function bacs_print_task_send_form($BACS) {
                           <div class="span6">                          
 
 <form enctype="multipart/form-data" action="tasks.php" method="POST">
+<fieldset>
 <div class="settingsform clearfix"><input type="hidden" name="section" value="optionalsubsystems">
     <input type="hidden" name="id" value="'.$CM->id.'">
     <input type="hidden" name="task_id" value="'.$task->id.'">
@@ -307,7 +309,6 @@ function bacs_print_task_send_form($BACS) {
         <input type="text" class="ignoredirty">
         <input type="password" class="ignoredirty">
     </div>
-    <fieldset>
         <div class="form-item clearfix" id="admin-completiondefault">
             <div class="form-label">
               <label for="id_s__completiondefault">Компилятор</label>
@@ -365,8 +366,8 @@ function bacs_print_task_send_form($BACS) {
                 </div>
             </div>
         </div>
-    </fieldset>
 </div>
+</fieldset>
 </form>
               </div>
               <div class="offset6">
@@ -401,20 +402,21 @@ print '</tbody>
 bacs_print_task_send_form($BACS);
 
 function bacs_submit($BACS) {
-    global $_POST, $DB;
+    global $_POST, $DB, $USER, $CM;
     $task_answer='';
     //if ($_GET["answer"] != "")
     //    $task_answer = stripslashes(stripslashes($_GET["answer"]));
-    if (optional_param('key', 0, PARAM_INT) == md5($USER->email.$USER->sesskey.$CM->id.$task->id)) {
-        $source = optional_param('source', 0, PARAM_INT);
+    $task_id = optional_param('task_id', 0, PARAM_INT);
+    if (optional_param('key', 0, PARAM_INT) == md5($USER->email.$USER->sesskey.$CM->id.$task_id)) {
+    //if (optional_param('key', 0, PARAM_INT) == md5($USER->email.$USER->sesskey.$CM->id.$task->id)) {
+        $source = $_POST["source"];
         if (isset($source) && ($source != "")) {
-            $task_answer = stripslashes(stripslashes($_POST["source"]));
             $record = new stdClass();
             $record->user_id = $USER->id;
             $record->contest_id = $BACS->id;
             $record->task_id = optional_param('task_id', 0, PARAM_INT);
             $record->lang_id = optional_param('lang_id', 0, PARAM_INT);
-            $record->source = optional_param('source_id', 0, PARAM_INT);
+            $record->source = $source;
             $record->result_id = 1;
             $record->submit_time = time();
             $lastinsertid = $DB->insert_record('bacs_submits', $record, false);

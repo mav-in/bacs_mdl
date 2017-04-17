@@ -48,6 +48,18 @@
         <KEY NAME="primary" TYPE="primary" FIELDS="task_id, contest_id"/>
       </KEYS>
     </TABLE>
+    <TABLE NAME="bacs_tasks_test_expected" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
+		<FIELD NAME="test_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="input" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый ввод программы"/>
+		<FIELD NAME="expected" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый вывод программы"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="task_id, test_id"/>
+      </KEYS>
+    </TABLE>
     <TABLE NAME="bacs_submits" COMMENT="Эта таблица содержит посылки и результаты проверки задач.">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор посылки"/>
@@ -77,8 +89,8 @@
         <FIELD NAME="submit_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор посылки"/>
         <FIELD NAME="test_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Номер теста"/>
         <FIELD NAME="status_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Статус теста"/>
-        <FIELD NAME="time_used" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное использованное время"/>
-        <FIELD NAME="memory_used" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальная использованная память"/>
+        <FIELD NAME="time_used" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное использованное время"/>
+        <FIELD NAME="memory_used" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальная использованная память"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

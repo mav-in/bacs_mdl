@@ -1,4 +1,4 @@
-<?php
+<?php //
 
 /**
  *
@@ -67,6 +67,7 @@ include './api/Client.php';
 $apiClient = new Bacs\Client();
 
 // SQL запрашиваем результаты
+// OOF_OLD
 if ($apiClient->Ping()) {
     $resdb = $DB->get_records('bacs_cron', array('status_id' => 2), 'timestamp ASC');
     $sync_ids = array();
