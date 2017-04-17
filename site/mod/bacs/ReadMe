@@ -1,0 +1,28 @@
+This file contains some notes and explanations for new developers
+Project team: Konstantin Elshanskiy, Vitalyi Shubin, Artem Yuminov
+
+MINIMAL REQUIREMENTS for bacs plugin:
+  The subfolder of plugin must have file version.php. If you update plugin, please, change $module->version in version.php (use 00 if it is first build for this day, 01 if it is second, etc.).
+So, this will run update process for your plugin.
+  English translation must be in file /bacs/lang/en/bacs.php. This file must be with some predefined translation.
+  The name of all database tables should start with prefix 'bacs'
+  The subfolder should contain a file called README.txt (the validator can automatically rename other extensions to .txt) with details about the current release of the plugin.
+  $module->version must be defined in version.php
+  $module->requires must be defined in version.php
+  File lib.php exists and contains "function bacs_add_instance", "function bacs_update_instance"
+  File view.php exists
+  File index.php exists
+  db/install.xml exists
+  db/upgrade.php exists
+  db/access.php exists
+You have to met all this requirements if you want to get this plugin work!
+You can download sample of new plugin for moodle > 2.0 here https://github.com/moodlehq/moodle-mod_newmodule
+Also you can read a little bit outdated description of creating new plugin http://docs.moodle.org/dev/NEWMODULE_Documentation
+
+PIX
+  This directory contains icon.gif file for your module
+
+SECURITY
+  This string "defined('MOODLE_INTERNAL') || die();" disallow direct access to module php.
+
+http://phpmyadmin.cs.istu.ru/index.php

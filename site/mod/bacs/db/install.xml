@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--TODO: Проверить ключи и id таблиц-->
+<XMLDB PATH="mod/bacs/db" VERSION="20160701" COMMENT="XMLDB file for Moodle mod/bacs"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="bacs" COMMENT="Этоглавная таблица, содержит основные настройки контеста.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" UNSIGNED="true" COMMENT="Идентификатор курса"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Название контеста"/>
+        <FIELD NAME="starttime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Время начал"/>
+        <FIELD NAME="endtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Время завершения"/>
+        <FIELD NAME="upsolving" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Разрешение дорешивания"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="bacs_tasks" COMMENT="Эта таблица хранит иинформацию о всех задачах контестов.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="task_id" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Название задачи"/>
+        <FIELD NAME="time_limit_millis" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Время на выполнение решения msec"/>
+        <FIELD NAME="memory_limit_bytes" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Память на выполннеие в байтах"/>
+        <FIELD NAME="count_tests" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Количество тестов"/>
+        <FIELD NAME="test_points" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Баллы за тесты (по-умолчанию)"/>
+        <FIELD NAME="statement_url" TYPE="char" LENGTH="511" NOTNULL="false" SEQUENCE="false" COMMENT="url на условие задачи"/>
+        <FIELD NAME="revision" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Ревизия задачи"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_tasks_to_contests" COMMENT="Таблица содержит список задач контеста и их порядок в контесте">
+      <FIELDS>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
+        <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор контеста"/>
+        <FIELD NAME="task_order" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="Порядок задач в контесте"/>
+        <FIELD NAME="test_points" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Баллы за тесты (персональные)"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="task_id, contest_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_tasks_test_expected" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор задачи"/>
+		<FIELD NAME="test_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="input" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый ввод программы"/>
+		<FIELD NAME="expected" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый вывод программы"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="task_id, test_id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits" COMMENT="Эта таблица содержит посылки и результаты проверки задач.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор посылки"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор пользователя"/>
+        <FIELD NAME="contest_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор контеста"/>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идеттификатор задачи"/>
+        <FIELD NAME="lang_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идеттификатор языка"/>
+        <FIELD NAME="source" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Код посылки"/>
+        <FIELD NAME="submit_time" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Время получения решения"/>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Результат проверки"/>
+        <FIELD NAME="test_num_failed" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false" COMMENT="Номер проваленного теста"/>
+        <FIELD NAME="points" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false" COMMENT="Очки за тесты"/>
+        <FIELD NAME="max_time_used" TYPE="int" LENGTH="7" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальное использованное время"/>
+        <FIELD NAME="max_memory_used" TYPE="int" LENGTH="7" NOTNULL="false" SEQUENCE="false" COMMENT="Максимальная использованная память"/>
+        <FIELD NAME="info" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Сообщение компилятора"/>
+        <!--<FIELD NAME="revision" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="Ревизия задачи"/>-->
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="lang_id" TYPE="foreign" FIELDS="lang_id" REFTABLE="bacs_langs" REFFIELDS="id"/>
+        <KEY NAME="result_id" TYPE="foreign" FIELDS="result_id" REFTABLE="bacs_results" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits_tests" COMMENT="Эта таблица хранит иинформацию о всех задачах, которые дошли до тестов.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="submit_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор посылки"/>
+        <FIELD NAME="test_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Номер теста"/>
+        <FIELD NAME="status_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Статус теста"/>
+        <FIELD NAME="time_used" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное использованное время"/>
+        <FIELD NAME="memory_used" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальная использованная память"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits_tests_output" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="test_id" TYPE="int" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="output" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Вывод программы"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_submits_samples" COMMENT="Ввод/вывод программы.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" UNSIGNED="true" COMMENT="Счётчик"/>  
+        <FIELD NAME="test_id" TYPE="int" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор теста"/>
+        <FIELD NAME="expected_input" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый ввод программы"/>
+        <FIELD NAME="Expected_output" TYPE="text" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Ожидаемый вывод программы"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_cron" COMMENT="Эта таблица содержит идентификаторы задач, которым требуется операция обслуживания.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор заданич"/>
+        <FIELD NAME="submit_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор посылки"/>
+        <FIELD NAME="sync_submit_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Идентификатор посылки в BACS"/>
+        <FIELD NAME="submit_type" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Тип посылки"/>
+        <FIELD NAME="status_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Текущий статус операции"/>
+        <FIELD NAME="flag" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="Флаг блокировки операции"/>
+        <FIELD NAME="error" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Счётчик ошибок"/>
+        <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Отметка времени последней опреации"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="submit_id" TYPE="foreign" FIELDS="submit_id" REFTABLE="bacs_submits" REFFIELDS="submit_id"/>
+      </KEYS>
+    </TABLE>
+    <!--TODO-->
+    <TABLE NAME="bacs_langs" COMMENT="Языки компиляторов.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор компилятора"/>
+        <FIELD NAME="lang_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Внешний идентификатор компилятора"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="КОроткое название компилятора"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Описание компилятора"/>
+        <FIELD NAME="time_limit_millis" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальное время на компиляцию"/>
+        <FIELD NAME="memory_limit_bytes" TYPE="int" LENGTH="7" NOTNULL="true" SEQUENCE="false" UNSIGNED="true" COMMENT="Максимальный размера на компиляцию"/>
+        <FIELD NAME="compiler_type" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Тип компилятора"/>
+      </FIELDS>
+      <KEYS><!--TODO: Проверить ключ-->
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_results" COMMENT="Строковое описание статусов проверки задачи">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
+        <FIELD NAME="result_id" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="Идентификатор статуса"/>
+        <FIELD NAME="result_str_acm" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы ACM"/>
+        <FIELD NAME="result_str_school" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы Школьный"/>
+        <FIELD NAME="result_str_custom" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса проверяющей системы Прозвольный"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="bacs_cron_status" COMMENT="Строковое описание статусов планировщика">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Идентификатор статуса"/>
+        <FIELD NAME="status_str" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Строковое описание статуса"/>
+        <FIELD NAME="info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Комментарий к статусу"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

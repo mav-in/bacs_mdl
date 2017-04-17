@@ -1,0 +1,17 @@
+#/bacs_mdl/nbproject/private/
+
+# block all
+*
+
+# exept
+!/README.md
+!/billet
+!/billet/*
+!/site
+!/site/mod
+!/site/mod/bacs
+!/site/mod/bacs/*
+
+/site/mod/bacs/api*
+
+.idea
